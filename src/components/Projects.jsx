@@ -222,7 +222,7 @@ const projects = [
     image: project1Image,
     tech: ["React", "Node.js", "TensorFlow", "AWS"],
     description: "A sophisticated analytics platform leveraging machine learning for real-time business insights.",
-    link: "#"
+    link: "https://github.com/deskiandriya/hyrofinance"
   },
   {
     title: "Blockchain Trading Platform",
