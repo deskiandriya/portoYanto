@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import project1Image from '../assets/images/project1.png';
-import project2Image from '../assets/images/project2.jpg';
-import project3Image from '../assets/images/project3.jpg';
 
 const ProjectsSection = styled.section`
   padding: 6rem 2rem;
@@ -218,15 +215,15 @@ const Notification = styled.div`
 
 const projects = [
   {
-    title: "AI-Powered Analytics Dashboard",
-    image: project1Image,
-    tech: ["React", "Node.js", "TensorFlow", "AWS"],
-    description: "A sophisticated analytics platform leveraging machine learning for real-time business insights.",
+    title: "HyroFinance",
+    image: "https://placehold.co/600x400/2a2a2a/ffffff?text=HyroFinance",
+    tech: ["React", "Node.js", "Chart.js", "JSON"],
+    description: "Advanced analysis platform that helps you to manage your finances and provides accurate information according to the data you provide.",
     link: "https://github.com/deskiandriya/hyrofinance"
   },
   {
     title: "Blockchain Trading Platform",
-    image: project2Image,
+    image: "https://placehold.co/600x400/2a2a2a/ffffff?text=Blockchain+Platform",
     tech: ["React", "Solidity", "Web3.js", "Firebase"],
     description: "Secure and efficient cryptocurrency trading platform with real-time market data.",
     link: "#",
@@ -234,7 +231,7 @@ const projects = [
   },
   {
     title: "IoT Smart Home System",
-    image: project3Image,
+    image: "https://placehold.co/600x400/2a2a2a/ffffff?text=IoT+System",
     tech: ["React Native", "Python", "MongoDB", "MQTT"],
     description: "Comprehensive smart home solution with AI-powered automation and energy management.",
     link: "#",
@@ -271,7 +268,7 @@ const Projects = () => {
               ))}
             </ProjectTech>
             <ProjectDescription>{project.description}</ProjectDescription>
-            <ProjectLink href={project.link}>
+            <ProjectLink href={project.link} target="_blank" rel="noopener noreferrer">
               View Project <i className="fas fa-arrow-right"></i>
             </ProjectLink>
           </ProjectCard>
