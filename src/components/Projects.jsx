@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import project1Image from '../assets/images/project1.png';
+import project2Image from '../assets/images/project2.jpg';
+import project3Image from '../assets/images/project3.jpg';
 
 const ProjectsSection = styled.section`
   padding: 6rem 2rem;
@@ -216,14 +219,14 @@ const Notification = styled.div`
 const projects = [
   {
     title: "AI-Powered Analytics Dashboard",
-    image: "/src/assets/images/project1.png",
+    image: project1Image,
     tech: ["React", "Node.js", "TensorFlow", "AWS"],
     description: "A sophisticated analytics platform leveraging machine learning for real-time business insights.",
     link: "#"
   },
   {
     title: "Blockchain Trading Platform",
-    image: "/src/assets/images/project2.jpg",
+    image: project2Image,
     tech: ["React", "Solidity", "Web3.js", "Firebase"],
     description: "Secure and efficient cryptocurrency trading platform with real-time market data.",
     link: "#",
@@ -231,7 +234,7 @@ const projects = [
   },
   {
     title: "IoT Smart Home System",
-    image: "/src/assets/images/project2.jpg",
+    image: project3Image,
     tech: ["React Native", "Python", "MongoDB", "MQTT"],
     description: "Comprehensive smart home solution with AI-powered automation and energy management.",
     link: "#",
