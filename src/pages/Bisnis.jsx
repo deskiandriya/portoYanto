@@ -94,7 +94,7 @@ const VideoWrapper = styled(motion.div)`
 
 const Section = styled.section`
   padding: 6rem 1rem 4rem 1rem;
-  background: #0a0a0a;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
 `;
 
 const Title = styled.h2`
@@ -162,7 +162,7 @@ const Button = styled(motion.a)`
 `;
 
 const PortfolioSection = styled.section`
-  background: #1a1a1a;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
   padding: 6rem 1rem 4rem 1rem;
 `;
 
@@ -198,7 +198,7 @@ const PortfolioImg = styled(motion.img)`
 `;
 
 const FeaturesSection = styled.section`
-  background: #0a0a0a;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   padding: 6rem 1rem 4rem 1rem;
 `;
 
@@ -230,7 +230,14 @@ export default function Bisnis() {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1.1, delay: 0.3 }}
         >
-          <video src="/src/assets/images/videobg.mp4" autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <video 
+            src="/videobg.mp4" 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
         </VideoWrapper>
         <HeroContent>
           <HeroTitle initial={{ y: -40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
