@@ -22,19 +22,40 @@ const floatAnimation = keyframes`
 `;
 
 const Hero = styled.div`
+  position: relative;
   display: flex;
   min-height: 100vh;
   padding: 2rem;
   background: #181a20;
   color: white;
   gap: 2rem;
-  position: relative;
-  overflow: visible;
-  box-shadow: 0 0 32px 0 rgba(0,0,0,0.10);
+  overflow: hidden;
+  align-items: center;
+  z-index: 1;
   @media (max-width: 900px) {
     flex-direction: column;
     align-items: center;
     padding: 1rem;
+  }
+`;
+
+const VideoBackground = styled.video`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 75vw;
+  height: calc(75vw * 4 / 3);
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  opacity: 0.35;
+  pointer-events: none;
+  background: #111;
+  @media (max-width: 900px) {
+    width: 100vw;
+    height: calc(100vw * 4 / 3);
   }
 `;
 
@@ -163,6 +184,9 @@ function Home() {
   return (
     <Layout>
       <Hero>
+        <VideoBackground autoPlay loop muted playsInline>
+          <source src="/videoutama.mp4" type="video/mp4" />
+        </VideoBackground>
         <LeftSection>
           <ProfileImage>
             <img src={profileImage} alt="Profile" />
@@ -174,14 +198,6 @@ function Home() {
           </Description>
           <CenterButton to="/bisnis">Lihat Bisnis Saya</CenterButton>
         </LeftSection>
-        <RightSection>
-          <VideoContainer>
-            <video autoPlay loop muted playsInline>
-              <source src="/videoutama.mp4" type="video/mp4" />
-              Browser Anda tidak mendukung tag video.
-            </video>
-          </VideoContainer>
-        </RightSection>
       </Hero>
       <About />
       <Experience />
