@@ -16,13 +16,17 @@ import {
 } from './styles/Hero.styles';
 import profileImage from './assets/images/profile.jpg';
 import HyroFinance from './pages/HyroFinance';
+import Bisnis from './pages/Bisnis';
 
 function Home() {
   return (
     <Layout>
-      <nav style={{ padding: '1rem', textAlign: 'right' }}>
+      <nav style={{ padding: '1rem', textAlign: 'right', display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>
         <Link to="/hyrofinance" style={{ fontWeight: 'bold', color: 'var(--color-primary)' }}>
           HyroFinance
+        </Link>
+        <Link to="/bisnis" style={{ fontWeight: 'bold', color: '#fc5c7d' }}>
+          Bisnis
         </Link>
       </nav>
       <Hero>
@@ -53,6 +57,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/hyrofinance" element={<HyroFinance />} />
+      <Route path="/bisnis" element={<Bisnis />} />
     </Routes>
   );
 }
