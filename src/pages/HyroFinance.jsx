@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import { BrowserRouter } from 'react-router-dom';
 
 const ParallaxSection = styled.section`
   background: linear-gradient(135deg, #6a82fb 0%, #fc5c7d 100%);
@@ -67,7 +66,7 @@ const scrollToSection = ref => {
 export default function HyroFinance() {
   const detailRef = useRef(null);
   return (
-    <BrowserRouter>
+    <>
       <ParallaxSection as={motion.section} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
         <motion.div initial={{ y: 60, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.3 }}>
           <h1 style={{ color: 'white', fontSize: '2.5rem', fontWeight: 700, marginBottom: '1rem' }}>
@@ -107,6 +106,6 @@ export default function HyroFinance() {
           </Button>
         </Card>
       </Section>
-    </BrowserRouter>
+    </>
   );
 } 
