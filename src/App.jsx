@@ -28,7 +28,7 @@ const CenterBox = styled.div`
 
 const CenterText = styled.p`
   font-size: 1.2rem;
-  color: #444;
+  color: #fff;
   margin-bottom: 1.2rem;
   text-align: center;
   max-width: 420px;
