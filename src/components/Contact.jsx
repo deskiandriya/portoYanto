@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
+import emailjs from '@emailjs/browser';
 
 const fadeIn = keyframes`
   from {
@@ -209,6 +210,11 @@ const SuccessMessage = styled.div`
   animation: ${fadeIn} 0.3s ease forwards;
 `;
 
+const ErrorMessage = styled(SuccessMessage)`
+  color: #ff4444;
+  background: ${({ theme }) => `rgba(255,68,68,${theme.mode === 'dark' ? '0.1' : '0.05'})`};
+`;
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -218,6 +224,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -230,21 +237,39 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError('');
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      await emailjs.send(
+        'YOUR_SERVICE_ID', // Ganti dengan Service ID dari EmailJS
+        'YOUR_TEMPLATE_ID', // Ganti dengan Template ID dari EmailJS
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_name: 'Deski Andriyanto',
+          to_email: 'deskiandriyanto123@gmail.com'
+        },
+        'YOUR_PUBLIC_KEY' // Ganti dengan Public Key dari EmailJS
+      );
 
-    setShowSuccess(true);
-    setIsSubmitting(false);
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
+      setShowSuccess(true);
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      setError('Failed to send message. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
 
     setTimeout(() => {
       setShowSuccess(false);
+      setError('');
     }, 3000);
   };
 
@@ -269,7 +294,7 @@ const Contact = () => {
               <i className="fas fa-phone"></i>
               <div>
                 <h3>Phone</h3>
-                <p>+62 812-3456-7890</p>
+                <p>+62 8953-7728-6377</p>
               </div>
             </ContactMethod>
             <ContactMethod>
@@ -332,6 +357,11 @@ const Contact = () => {
             <SuccessMessage>
               Thank you for your message! I'll get back to you soon.
             </SuccessMessage>
+          )}
+          {error && (
+            <ErrorMessage>
+              {error}
+            </ErrorMessage>
           )}
         </ContactForm>
       </Container>
