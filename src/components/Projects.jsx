@@ -222,14 +222,14 @@ const projects = [
     link: "https://github.com/deskiandriya/hyrofinance"
   },
   {
-    title: "Blockchain Trading Platform",
+    title: "HyroTrade",
     image: "https://raw.githubusercontent.com/deskiandriya/portoYanto/main/src/assets/images/project2.jpg",
     tech: ["React", "Solidity", "Web3.js", "Firebase"],
     description: "Secure and efficient cryptocurrency trading platform with real-time market data.",
     maintenance: true
   },
   {
-    title: "IoT Smart Home System",
+    title: "Smart Home System",
     image: "https://raw.githubusercontent.com/deskiandriya/portoYanto/main/src/assets/images/project2.jpg",
     tech: ["React Native", "Python", "MongoDB", "MQTT"],
     description: "Comprehensive smart home solution with AI-powered automation and energy management.",
