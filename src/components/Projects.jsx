@@ -216,24 +216,24 @@ const Notification = styled.div`
 const projects = [
   {
     title: "HyroFinance",
-    image: "https://raw.githubusercontent.com/deskiandriya/portoYanto/main/src/assets/images/hyrofinance.png",
+    image: "https://raw.githubusercontent.com/deskiandriya/portoYanto/main/src/assets/images/project1.png",
     tech: ["React", "Node.js", "Chart.js", "JSON"],
     description: "Advanced analysis platform that helps you to manage your finances and provides accurate information according to the data you provide.",
     link: "https://github.com/deskiandriya/hyrofinance"
   },
   {
     title: "Blockchain Trading Platform",
-    image: "https://raw.githubusercontent.com/deskiandriya/portoYanto/main/src/assets/images/blockchain.png",
+    image: "https://raw.githubusercontent.com/deskiandriya/portoYanto/main/src/assets/images/project2.png",
     tech: ["React", "Solidity", "Web3.js", "Firebase"],
     description: "Secure and efficient cryptocurrency trading platform with real-time market data.",
-    link: "https://github.com/deskiandriya/blockchain-trading"
+    link: "#"
   },
   {
     title: "IoT Smart Home System",
-    image: "https://raw.githubusercontent.com/deskiandriya/portoYanto/main/src/assets/images/iot.png",
+    image: "https://raw.githubusercontent.com/deskiandriya/portoYanto/main/src/assets/images/project2.png",
     tech: ["React Native", "Python", "MongoDB", "MQTT"],
     description: "Comprehensive smart home solution with AI-powered automation and energy management.",
-    link: "https://github.com/deskiandriya/iot-smart-home"
+    link: "#"
   }
 ];
 
