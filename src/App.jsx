@@ -233,8 +233,8 @@ function Home() {
           <ProfileImage>
             <img src={profileImage} alt="Profile" />
           </ProfileImage>
-          <Title>Deski Andriya</Title>
-          <Subtitle>Full Stack Developer</Subtitle>
+          <Title>Deski Andriyanto</Title>
+          <Subtitle>Web Developer</Subtitle>
           <Description>
             Saya adalah seorang pengembang yang bersemangat dalam menciptakan aplikasi web yang indah dan fungsional.
             Dengan keahlian dalam teknologi web modern dan kepekaan terhadap desain.

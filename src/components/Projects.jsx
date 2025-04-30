@@ -219,7 +219,7 @@ const projects = [
     image: "https://raw.githubusercontent.com/deskiandriya/portoYanto/main/src/assets/images/project1.png",
     tech: ["React", "Node.js", "Chart.js", "JSON"],
     description: "Advanced analysis platform that helps you to manage your finances and provides accurate information according to the data you provide.",
-    link: "https://github.com/deskiandriya/hyrofinance"
+    link: "https://deski-porto.vercel.app/hyrofinance"
   },
   {
     title: "HyroTrade",
