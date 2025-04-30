@@ -9,6 +9,9 @@
       }
     }
   ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ],
   "env": {
     "VERCEL": "1"
   },
