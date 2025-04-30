@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { FaBriefcase, FaGlobe, FaMobileAlt, FaCode, FaGem } from 'react-icons/fa';
+import { FaHeart, FaBriefcase, FaGem, FaCode, FaMobileAlt } from 'react-icons/fa';
 
 const HeroSection = styled.section`
   min-height: 60vh;
