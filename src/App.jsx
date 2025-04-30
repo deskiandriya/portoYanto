@@ -19,9 +19,23 @@ import HyroFinance from './pages/HyroFinance';
 import Bisnis from './pages/Bisnis';
 import styled from 'styled-components';
 
+const CenterBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2.5rem auto 0 auto;
+`;
+
+const CenterText = styled.p`
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 1.2rem;
+  text-align: center;
+  max-width: 420px;
+`;
+
 const CenterButton = styled(Link)`
   display: inline-block;
-  margin: 2.5rem auto 0 auto;
   padding: 1.2rem 3rem;
   background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
   color: white;
@@ -32,12 +46,9 @@ const CenterButton = styled(Link)`
   box-shadow: 0 8px 32px rgba(106,130,251,0.13);
   transition: background 0.3s, transform 0.2s;
   text-align: center;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
   &:hover {
     background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
-    transform: translateX(-50%) scale(1.05);
+    transform: scale(1.05);
   }
 `;
 
@@ -58,7 +69,12 @@ function Home() {
             With expertise in modern web technologies and a keen eye for design.
           </Description>
         </ProfileContainer>
-        <CenterButton to="/bisnis">Lihat Bisnis Saya</CenterButton>
+        <CenterBox>
+          <CenterText>
+            Silakan order pada bisnis saya sesuai kebutuhan Anda. Klik tombol di bawah untuk melihat layanan bisnis yang tersedia.
+          </CenterText>
+          <CenterButton to="/bisnis">Lihat Bisnis Saya</CenterButton>
+        </CenterBox>
       </Hero>
       <About />
       <Experience />
