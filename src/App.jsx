@@ -175,30 +175,32 @@ function Home() {
     document.title = "Deski Andriyanto - Web Developer";
   }, []);
   return (
-    <Hero>
-      <VideoSide>
-        <VideoPortrait autoPlay loop muted playsInline>
-          <source src="/videoutama.mp4" type="video/mp4" />
-        </VideoPortrait>
-      </VideoSide>
-      <ContentSide>
-        <ProfileImage>
-          <img src={profileImage} alt="Profile" />
-        </ProfileImage>
-        <Title>Deski Andriyanto</Title>
-        <Subtitle>Web Developer</Subtitle>
-        <Description>
-          Saya adalah seorang pengembang yang bersemangat dalam menciptakan aplikasi web yang indah dan fungsional. Dengan keahlian dalam teknologi web modern dan kepekaan terhadap desain.
-        </Description>
-        <CenterButton to="/bisnis">Lihat Bisnis Saya</CenterButton>
-      </ContentSide>
-    </Hero>
-    <Layout>
-      <About />
-      <Experience />
-      <Projects />
-      <Contact />
-    </Layout>
+    <>
+      <Hero>
+        <VideoSide>
+          <VideoPortrait autoPlay loop muted playsInline>
+            <source src="/videoutama.mp4" type="video/mp4" />
+          </VideoPortrait>
+        </VideoSide>
+        <ContentSide>
+          <ProfileImage>
+            <img src={profileImage} alt="Profile" />
+          </ProfileImage>
+          <Title>Deski Andriyanto</Title>
+          <Subtitle>Web Developer</Subtitle>
+          <Description>
+            Saya adalah seorang pengembang yang bersemangat dalam menciptakan aplikasi web yang indah dan fungsional. Dengan keahlian dalam teknologi web modern dan kepekaan terhadap desain.
+          </Description>
+          <CenterButton to="/bisnis">Lihat Bisnis Saya</CenterButton>
+        </ContentSide>
+      </Hero>
+      <Layout>
+        <About />
+        <Experience />
+        <Projects />
+        <Contact />
+      </Layout>
+    </>
   );
 }
 
