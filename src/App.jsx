@@ -73,9 +73,6 @@ const ContentSide = styled.div`
   align-items: flex-start;
   padding: 2rem 1rem 2rem 2rem;
   animation: ${fadeIn} 1s ease-out;
-  background: none;
-  box-shadow: none;
-  border: none;
   @media (max-width: 900px) {
     align-items: center;
     padding: 1rem;
@@ -88,7 +85,7 @@ const ProfileImage = styled.div`
   border-radius: 50%;
   overflow: hidden;
   margin-bottom: 2rem;
-  border: none;
+  border: 4px solid #a084e8;
   background: #263142;
   display: flex;
   align-items: center;
@@ -178,25 +175,25 @@ function Home() {
     document.title = "Deski Andriyanto - Web Developer";
   }, []);
   return (
+    <Hero>
+      <VideoSide>
+        <VideoPortrait autoPlay loop muted playsInline>
+          <source src="/videoutama.mp4" type="video/mp4" />
+        </VideoPortrait>
+      </VideoSide>
+      <ContentSide>
+        <ProfileImage>
+          <img src={profileImage} alt="Profile" />
+        </ProfileImage>
+        <Title>Deski Andriyanto</Title>
+        <Subtitle>Web Developer</Subtitle>
+        <Description>
+          Saya adalah seorang pengembang yang bersemangat dalam menciptakan aplikasi web yang indah dan fungsional. Dengan keahlian dalam teknologi web modern dan kepekaan terhadap desain.
+        </Description>
+        <CenterButton to="/bisnis">Lihat Bisnis Saya</CenterButton>
+      </ContentSide>
+    </Hero>
     <Layout>
-      <Hero>
-        <VideoSide>
-          <VideoPortrait autoPlay loop muted playsInline>
-            <source src="/videoutama.mp4" type="video/mp4" />
-          </VideoPortrait>
-        </VideoSide>
-        <ContentSide>
-          <ProfileImage>
-            <img src={profileImage} alt="Profile" />
-          </ProfileImage>
-          <Title>Deski Andriyanto</Title>
-          <Subtitle>Web Developer</Subtitle>
-          <Description>
-            Saya adalah seorang pengembang yang bersemangat dalam menciptakan aplikasi web yang indah dan fungsional. Dengan keahlian dalam teknologi web modern dan kepekaan terhadap desain.
-          </Description>
-          <CenterButton to="/bisnis">Lihat Bisnis Saya</CenterButton>
-        </ContentSide>
-      </Hero>
       <About />
       <Experience />
       <Projects />
