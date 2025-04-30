@@ -26,40 +26,46 @@ const Hero = styled.div`
   display: flex;
   min-height: 100vh;
   padding: 2rem;
-  background: #181a20;
+  background: #263142;
   color: white;
-  gap: 2rem;
-  overflow: hidden;
+  gap: 2.5rem;
   align-items: center;
+  overflow: hidden;
   z-index: 1;
   @media (max-width: 900px) {
     flex-direction: column;
     align-items: center;
     padding: 1rem;
+    gap: 1.5rem;
   }
 `;
 
-const VideoBackground = styled.video`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 75vw;
-  height: calc(75vw * 4 / 3);
-  min-width: 100%;
-  min-height: 100%;
-  object-fit: cover;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  opacity: 0.35;
-  pointer-events: none;
-  background: #111;
+const VideoSide = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
   @media (max-width: 900px) {
-    width: 100vw;
-    height: calc(100vw * 4 / 3);
+    width: 100%;
+    justify-content: center;
   }
 `;
 
-const LeftSection = styled.div`
+const VideoPortrait = styled.video`
+  width: 220px;
+  height: 330px;
+  object-fit: cover;
+  border-radius: 18px;
+  background: #263142;
+  box-shadow: none;
+  border: none;
+  @media (max-width: 600px) {
+    width: 120px;
+    height: 180px;
+  }
+`;
+
+const ContentSide = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -73,18 +79,6 @@ const LeftSection = styled.div`
   }
 `;
 
-const RightSection = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: ${fadeIn} 1s ease-out 0.3s backwards;
-  @media (max-width: 900px) {
-    width: 100%;
-    margin-top: 2rem;
-  }
-`;
-
 const ProfileImage = styled.div`
   width: 220px;
   height: 220px;
@@ -92,12 +86,11 @@ const ProfileImage = styled.div`
   overflow: hidden;
   margin-bottom: 2rem;
   border: 4px solid #a084e8;
-  background: #222;
+  background: #263142;
   display: flex;
   align-items: center;
   justify-content: center;
   animation: ${floatAnimation} 6s ease-in-out infinite;
-  box-shadow: 0 4px 32px 0 rgba(0,0,0,0.10);
   img {
     width: 100%;
     height: 100%;
@@ -184,10 +177,12 @@ function Home() {
   return (
     <Layout>
       <Hero>
-        <VideoBackground autoPlay loop muted playsInline>
-          <source src="/videoutama.mp4" type="video/mp4" />
-        </VideoBackground>
-        <LeftSection>
+        <VideoSide>
+          <VideoPortrait autoPlay loop muted playsInline>
+            <source src="/videoutama.mp4" type="video/mp4" />
+          </VideoPortrait>
+        </VideoSide>
+        <ContentSide>
           <ProfileImage>
             <img src={profileImage} alt="Profile" />
           </ProfileImage>
@@ -197,7 +192,7 @@ function Home() {
             Saya adalah seorang pengembang yang bersemangat dalam menciptakan aplikasi web yang indah dan fungsional. Dengan keahlian dalam teknologi web modern dan kepekaan terhadap desain.
           </Description>
           <CenterButton to="/bisnis">Lihat Bisnis Saya</CenterButton>
-        </LeftSection>
+        </ContentSide>
       </Hero>
       <About />
       <Experience />
