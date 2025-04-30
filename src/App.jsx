@@ -62,8 +62,8 @@ function Home() {
               <img src={profileImage} alt="Profile" />
             </ProfileImage>
           </ProfileImageWrapper>
-          <Title>Deski Andriya</Title>
-          <Subtitle>Full Stack Developer</Subtitle>
+          <Title>Deski Andriyanto</Title>
+          <Subtitle>Web Developer</Subtitle>
           <Description>
             I'm a passionate developer focused on creating beautiful and functional web applications.
             With expertise in modern web technologies and a keen eye for design.
