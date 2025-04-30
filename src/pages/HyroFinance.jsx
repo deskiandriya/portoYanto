@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import Bisnis from './pages/Bisnis';
 
 const ParallaxSection = styled.section`
   background: linear-gradient(135deg, #6a82fb 0%, #fc5c7d 100%);
