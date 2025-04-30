@@ -73,6 +73,9 @@ const ContentSide = styled.div`
   align-items: flex-start;
   padding: 2rem 1rem 2rem 2rem;
   animation: ${fadeIn} 1s ease-out;
+  background: none;
+  box-shadow: none;
+  border: none;
   @media (max-width: 900px) {
     align-items: center;
     padding: 1rem;
@@ -85,7 +88,7 @@ const ProfileImage = styled.div`
   border-radius: 50%;
   overflow: hidden;
   margin-bottom: 2rem;
-  border: 4px solid #a084e8;
+  border: none;
   background: #263142;
   display: flex;
   align-items: center;
