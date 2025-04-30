@@ -190,17 +190,17 @@ const Experience = () => {
       align: "left"
     },
     {
-      period: "2021-2022",
-      title: "Operator Produksi",
-      company: "PT Manunggal Kabel",
-      description: "Assemble cables carefully according to company SOP and prioritize quality so that there are no technical errors during finishing.",
-      align: "right"
-    },
-    {
       period: "2022-2023",
       title: "Kithcen Staff",
       company: "Matjeo Korean Grill",
       description: "cook various Korean foods with appropriate flavors. various Korean foods such as kimbab, kimchi, tomyam, and collagen.",
+      align: "right"
+    },
+    {
+      period: "2021-2022",
+      title: "Operator Produksi",
+      company: "PT Manunggal Kabel",
+      description: "Assemble cables carefully according to company SOP and prioritize quality so that there are no technical errors during finishing.",
       align: "left"
     }
   ];
