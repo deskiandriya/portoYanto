@@ -269,14 +269,14 @@ const Contact = () => {
               <i className="fas fa-phone"></i>
               <div>
                 <h3>Phone</h3>
-                <p>+62 812-3456-7890</p>
+                <p>+62 8953-7728-6377</p>
               </div>
             </ContactMethod>
             <ContactMethod>
               <i className="fas fa-map-marker-alt"></i>
               <div>
                 <h3>Location</h3>
-                <p>Jakarta, Indonesia</p>
+                <p>Tegal, Indonesia</p>
               </div>
             </ContactMethod>
           </ContactMethods>
