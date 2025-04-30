@@ -26,7 +26,7 @@ const Hero = styled.div`
   display: flex;
   min-height: 100vh;
   padding: 2rem;
-  background: #263142;
+  background: #23272f;
   color: white;
   gap: 2.5rem;
   align-items: center;
@@ -40,32 +40,7 @@ const Hero = styled.div`
   }
 `;
 
-const VideoSide = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  @media (max-width: 900px) {
-    width: 100%;
-    justify-content: center;
-  }
-`;
-
-const VideoPortrait = styled.video`
-  width: 220px;
-  height: 330px;
-  object-fit: cover;
-  border-radius: 18px;
-  background: #263142;
-  box-shadow: none;
-  border: none;
-  @media (max-width: 600px) {
-    width: 120px;
-    height: 180px;
-  }
-`;
-
-const ContentSide = styled.div`
+const LeftSection = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -76,6 +51,31 @@ const ContentSide = styled.div`
   @media (max-width: 900px) {
     align-items: center;
     padding: 1rem;
+  }
+`;
+
+const RightSection = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 900px) {
+    width: 100%;
+    margin-top: 2rem;
+  }
+`;
+
+const VideoPortrait = styled.video`
+  width: 220px;
+  height: 330px;
+  object-fit: cover;
+  border-radius: 18px;
+  background: #23272f;
+  box-shadow: none;
+  border: none;
+  @media (max-width: 600px) {
+    width: 120px;
+    height: 180px;
   }
 `;
 
@@ -177,12 +177,7 @@ function Home() {
   return (
     <>
       <Hero>
-        <VideoSide>
-          <VideoPortrait autoPlay loop muted playsInline>
-            <source src="/videoutama.mp4" type="video/mp4" />
-          </VideoPortrait>
-        </VideoSide>
-        <ContentSide>
+        <LeftSection>
           <ProfileImage>
             <img src={profileImage} alt="Profile" />
           </ProfileImage>
@@ -192,7 +187,12 @@ function Home() {
             Saya adalah seorang pengembang yang bersemangat dalam menciptakan aplikasi web yang indah dan fungsional. Dengan keahlian dalam teknologi web modern dan kepekaan terhadap desain.
           </Description>
           <CenterButton to="/bisnis">Lihat Bisnis Saya</CenterButton>
-        </ContentSide>
+        </LeftSection>
+        <RightSection>
+          <VideoPortrait autoPlay loop muted playsInline>
+            <source src="/videoutama.mp4" type="video/mp4" />
+          </VideoPortrait>
+        </RightSection>
       </Hero>
       <Layout>
         <About />
