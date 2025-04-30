@@ -15,6 +15,9 @@
       "dest": "/index.html"
     }
   ],
+  "env": {
+    "VERCEL": "1"
+  },
   "github": {
     "silent": true
   }
