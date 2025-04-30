@@ -66,16 +66,24 @@ const RightSection = styled.div`
 `;
 
 const VideoPortrait = styled.video`
-  width: 220px;
-  height: 330px;
+  width: 350px;
+  height: 520px;
+  max-width: 90vw;
+  max-height: 80vh;
   object-fit: cover;
-  border-radius: 18px;
+  border-radius: 24px;
   background: #23272f;
   box-shadow: none;
   border: none;
+  @media (max-width: 900px) {
+    width: 90vw;
+    height: 60vw;
+    max-width: 350px;
+    max-height: 520px;
+  }
   @media (max-width: 600px) {
-    width: 120px;
-    height: 180px;
+    width: 180px;
+    height: 280px;
   }
 `;
 
