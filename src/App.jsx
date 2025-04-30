@@ -21,160 +21,120 @@ const floatAnimation = keyframes`
   100% { transform: translateY(0px); }
 `;
 
-const Hero = styled.div`
-  position: relative;
-  display: flex;
+const HeroBackground = styled.div`
   min-height: 100vh;
-  padding: 2rem;
-  background: #23272f;
-  color: white;
-  gap: 2.5rem;
+  width: 100vw;
+  background: repeating-linear-gradient(135deg, #23272f 0px, #23272f 40px, #22252b 40px, #22252b 80px);
+  display: flex;
   align-items: center;
-  overflow: hidden;
-  z-index: 1;
+  justify-content: center;
+  padding: 0;
+`;
+
+const HeroContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  max-width: 1400px;
+  padding: 0 2rem;
+  gap: 2.5rem;
   @media (max-width: 900px) {
     flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-    gap: 1.5rem;
+    padding: 2rem 1rem;
+    gap: 2rem;
   }
 `;
 
-const LeftSection = styled.div`
-  flex: 1;
+const LeftHero = styled.div`
+  flex: 1.2;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 2rem 1rem 2rem 2rem;
-  animation: ${fadeIn} 1s ease-out;
+  z-index: 2;
   @media (max-width: 900px) {
     align-items: center;
-    padding: 1rem;
+    text-align: center;
   }
 `;
 
-const RightSection = styled.div`
-  flex: 1;
+const HeroTitle = styled.h1`
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  letter-spacing: -2px;
+  span.gradient {
+    background: linear-gradient(90deg, #45b7d1 0%, #a084e8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+  @media (max-width: 600px) {
+    font-size: 2rem;
+  }
+`;
+
+const HeroDesc = styled.p`
+  font-size: 1.15rem;
+  color: #bfc6d1;
+  margin-bottom: 2.5rem;
+  max-width: 500px;
+  @media (max-width: 900px) {
+    margin: 0 auto 2rem auto;
+  }
+`;
+
+const HeroButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1.1rem 2.2rem;
+  background: #fff;
+  color: #23272f;
+  border-radius: 32px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 24px rgba(160,132,232,0.13);
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+  margin-top: 0.5rem;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background: #45b7d1;
+    color: #fff;
+    transform: scale(1.05);
+  }
+`;
+
+const RightHero = styled.div`
+  flex: 1.3;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
   @media (max-width: 900px) {
     width: 100%;
     margin-top: 2rem;
   }
 `;
 
-const VideoPortrait = styled.video`
-  width: 350px;
-  height: 520px;
-  max-width: 90vw;
-  max-height: 80vh;
+const VideoMockup = styled.video`
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  aspect-ratio: 16/10;
+  border-radius: 24px;
+  box-shadow: 0 8px 40px 0 rgba(0,0,0,0.45);
+  background: #181a20;
   object-fit: cover;
-  border-radius: 24px;
-  background: #23272f;
-  box-shadow: none;
-  border: none;
   @media (max-width: 900px) {
-    width: 90vw;
-    height: 60vw;
-    max-width: 350px;
-    max-height: 520px;
-  }
-  @media (max-width: 600px) {
-    width: 180px;
-    height: 280px;
-  }
-`;
-
-const ProfileImage = styled.div`
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-bottom: 2rem;
-  border: 4px solid #a084e8;
-  background: #263142;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: ${floatAnimation} 6s ease-in-out infinite;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  @media (max-width: 600px) {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 1.2rem;
-  }
-`;
-
-const Title = styled.h1`
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  color: #c084fc;
-  font-weight: 700;
-`;
-
-const Subtitle = styled.h2`
-  font-size: 1.3rem;
-  margin-bottom: 1.2rem;
-  color: #ff6bcb;
-  font-weight: 600;
-`;
-
-const Description = styled.p`
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  color: #e0e0e0;
-  max-width: 420px;
-`;
-
-const VideoContainer = styled.div`
-  width: 260px;
-  height: 420px;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(106,130,251,0.18);
-  background: #111;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  @media (max-width: 900px) {
-    width: 90vw;
-    height: 60vw;
-    max-width: 320px;
-    max-height: 480px;
-  }
-  video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    background: #111;
-  }
-`;
-
-const CenterButton = styled(Link)`
-  display: inline-block;
-  padding: 1rem 2.2rem;
-  background: linear-gradient(90deg, #a084e8 0%, #ff6bcb 100%);
-  color: white;
-  border-radius: 32px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  text-decoration: none;
-  box-shadow: 0 4px 24px rgba(160,132,232,0.13);
-  transition: background 0.3s, transform 0.2s;
-  text-align: center;
-  margin-top: 0.5rem;
-  &:hover {
-    background: linear-gradient(90deg, #ff6bcb 0%, #a084e8 100%);
-    transform: scale(1.05);
+    max-width: 95vw;
+    border-radius: 18px;
   }
 `;
 
@@ -184,24 +144,27 @@ function Home() {
   }, []);
   return (
     <>
-      <Hero>
-        <LeftSection>
-          <ProfileImage>
-            <img src={profileImage} alt="Profile" />
-          </ProfileImage>
-          <Title>Deski Andriyanto</Title>
-          <Subtitle>Web Developer</Subtitle>
-          <Description>
-            Saya adalah seorang pengembang yang bersemangat dalam menciptakan aplikasi web yang indah dan fungsional. Dengan keahlian dalam teknologi web modern dan kepekaan terhadap desain.
-          </Description>
-          <CenterButton to="/bisnis">Lihat Bisnis Saya</CenterButton>
-        </LeftSection>
-        <RightSection>
-          <VideoPortrait autoPlay loop muted playsInline>
-            <source src="/videoutama.mp4" type="video/mp4" />
-          </VideoPortrait>
-        </RightSection>
-      </Hero>
+      <HeroBackground>
+        <HeroContent>
+          <LeftHero>
+            <HeroTitle>
+              The first <span className="gradient">Foundation AI</span><br />for Blockchain
+            </HeroTitle>
+            <HeroDesc>
+              Built to redefine the realm of possibility for blockchains.<br />
+              Zark AI is engineered exclusively for blockchain applications, enabling smarter decisions, secure transactions, real-time insights and effortless automation.
+            </HeroDesc>
+            <HeroButton href="#" >
+              Join Waitlist <span style={{fontSize:'1.3em',marginLeft:'0.2em'}}>&rarr;</span>
+            </HeroButton>
+          </LeftHero>
+          <RightHero>
+            <VideoMockup autoPlay loop muted playsInline>
+              <source src="/videoutama.mp4" type="video/mp4" />
+            </VideoMockup>
+          </RightHero>
+        </HeroContent>
+      </HeroBackground>
       <Layout>
         <About />
         <Experience />
