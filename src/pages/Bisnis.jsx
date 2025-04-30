@@ -7,14 +7,35 @@ import { FaHeart, FaBriefcase, FaGem, FaCode, FaMobileAlt } from 'react-icons/fa
 const HeroSection = styled.section`
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-  padding: 4rem 1rem 2rem 1rem;
+  padding: 4rem 2rem;
   position: relative;
   overflow: hidden;
-  text-align: center;
+  gap: 4rem;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    text-align: center;
+    padding: 4rem 1rem;
+    gap: 2rem;
+  }
+`;
+
+const HeroContent = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-right: 2rem;
+
+  @media (max-width: 1024px) {
+    align-items: center;
+    padding-right: 0;
+  }
 `;
 
 const HeroTitle = styled(motion.h1)`
@@ -58,11 +79,17 @@ const HeroButton = styled(motion.a)`
 `;
 
 const VideoWrapper = styled(motion.div)`
-  margin: 3rem auto 0 auto;
-  max-width: 800px;
+  flex: 1;
+  max-width: 600px;
   border-radius: 30px;
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  aspect-ratio: 16/9;
+
+  @media (max-width: 1024px) {
+    max-width: 100%;
+    margin-top: 2rem;
+  }
 `;
 
 const Section = styled.section`
@@ -198,22 +225,24 @@ export default function Bisnis() {
   return (
     <>
       <HeroSection>
-        <HeroTitle initial={{ y: -40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
-          Layanan Bisnis Digital
-        </HeroTitle>
-        <HeroSubtitle initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.2 }}>
-          Solusi digital modern untuk kebutuhan bisnis dan personal Anda. Website undangan pernikahan, web full stack, dan layanan custom lainnya dengan desain premium dan animasi interaktif.
-        </HeroSubtitle>
-        <HeroButton href="#layanan" whileHover={{ scale: 1.1 }}>
-          Lihat Layanan
-        </HeroButton>
         <VideoWrapper
-          initial={{ x: 120, opacity: 0 }}
+          initial={{ x: -120, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1.1, delay: 0.3 }}
         >
-          <video src="/assets/coding-demo.mp4" autoPlay loop muted playsInline style={{ width: '100%', display: 'block' }} />
+          <video src="/src/assets/images/videobg.mp4" autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </VideoWrapper>
+        <HeroContent>
+          <HeroTitle initial={{ y: -40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
+            Layanan Bisnis Digital
+          </HeroTitle>
+          <HeroSubtitle initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.2 }}>
+            Solusi digital modern untuk kebutuhan bisnis dan personal Anda. Website undangan pernikahan, web full stack, dan layanan custom lainnya dengan desain premium dan animasi interaktif.
+          </HeroSubtitle>
+          <HeroButton href="#layanan" whileHover={{ scale: 1.1 }}>
+            Lihat Layanan
+          </HeroButton>
+        </HeroContent>
       </HeroSection>
       <Section id="layanan">
         <Title>Pilihan Layanan</Title>
