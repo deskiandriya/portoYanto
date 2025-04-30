@@ -223,17 +223,17 @@ const projects = [
   },
   {
     title: "Blockchain Trading Platform",
-    image: "https://raw.githubusercontent.com/deskiandriya/portoYanto/main/src/assets/images/project2.png",
+    image: "https://raw.githubusercontent.com/deskiandriya/portoYanto/main/src/assets/images/project2.jpg",
     tech: ["React", "Solidity", "Web3.js", "Firebase"],
     description: "Secure and efficient cryptocurrency trading platform with real-time market data.",
-    link: "#"
+    maintenance: true
   },
   {
     title: "IoT Smart Home System",
-    image: "https://raw.githubusercontent.com/deskiandriya/portoYanto/main/src/assets/images/project2.png",
+    image: "https://raw.githubusercontent.com/deskiandriya/portoYanto/main/src/assets/images/project2.jpg",
     tech: ["React Native", "Python", "MongoDB", "MQTT"],
     description: "Comprehensive smart home solution with AI-powered automation and energy management.",
-    link: "#"
+    maintenance: true
   }
 ];
 
