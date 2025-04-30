@@ -215,27 +215,25 @@ const Notification = styled.div`
 
 const projects = [
   {
-    title: "AI-Powered Analytics Dashboard",
-    image: "/src/assets/images/project1.png",
-    tech: ["React", "Node.js", "TensorFlow", "AWS"],
-    description: "A sophisticated analytics platform leveraging machine learning for real-time business insights.",
-    link: "#"
+    title: "HyroFinance",
+    image: "https://raw.githubusercontent.com/deskiandriya/portfolio/main/src/assets/images/hyrofinance.png",
+    tech: ["React", "Node.js", "Chart.js", "JSON"],
+    description: "Advanced analysis platform that helps you to manage your finances and provides accurate information according to the data you provide.",
+    link: "https://github.com/deskiandriya/hyrofinance"
   },
   {
     title: "Blockchain Trading Platform",
-    image: "/src/assets/images/project2.jpg",
+    image: "https://raw.githubusercontent.com/deskiandriya/portfolio/main/src/assets/images/blockchain.png",
     tech: ["React", "Solidity", "Web3.js", "Firebase"],
     description: "Secure and efficient cryptocurrency trading platform with real-time market data.",
-    link: "#",
-    maintenance: true
+    link: "https://github.com/deskiandriya/blockchain-trading"
   },
   {
     title: "IoT Smart Home System",
-    image: "/src/assets/images/project2.jpg",
+    image: "https://raw.githubusercontent.com/deskiandriya/portfolio/main/src/assets/images/iot.png",
     tech: ["React Native", "Python", "MongoDB", "MQTT"],
     description: "Comprehensive smart home solution with AI-powered automation and energy management.",
-    link: "#",
-    maintenance: true
+    link: "https://github.com/deskiandriya/iot-smart-home"
   }
 ];
 
@@ -268,7 +266,7 @@ const Projects = () => {
               ))}
             </ProjectTech>
             <ProjectDescription>{project.description}</ProjectDescription>
-            <ProjectLink href={project.link}>
+            <ProjectLink href={project.link} target="_blank" rel="noopener noreferrer">
               View Project <i className="fas fa-arrow-right"></i>
             </ProjectLink>
           </ProjectCard>

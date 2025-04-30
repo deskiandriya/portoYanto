@@ -3,7 +3,9 @@ import Layout from './components/Layout';
 import Projects from './components/Projects';
 import About from './components/About';
 import Experience from './components/Experience';
+import Contact from './components/Contact';
 import styled, { keyframes } from 'styled-components';
+import profileImage from './assets/images/profile.jpg';
 
 const fadeIn = keyframes`
   from {
@@ -284,7 +286,7 @@ function App() {
         <ProfileContainer>
           <ProfileImageWrapper>
             <ProfileImage>
-              <img src="src/assets/images/profile.jpg" alt="Profile" />
+              <img src={profileImage} alt="Profile" />
             </ProfileImage>
           </ProfileImageWrapper>
           <Title>Deski Andriyanto</Title>
@@ -317,6 +319,7 @@ function App() {
       <About />
       <Experience />
       <Projects />
+      <Contact />
     </Layout>
   );
 }
