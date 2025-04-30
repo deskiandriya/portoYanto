@@ -10,17 +10,44 @@ const HeroSection = styled.section`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-  padding: 4rem 2rem;
   position: relative;
   overflow: hidden;
   gap: 4rem;
+  padding: 4rem 2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, rgba(10,10,10,0.95) 0%, rgba(26,26,26,0.85) 100%);
+    z-index: 1;
+  }
 
   @media (max-width: 1024px) {
     flex-direction: column;
     text-align: center;
     padding: 4rem 1rem;
     gap: 2rem;
+  }
+`;
+
+const VideoBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 `;
 
@@ -31,6 +58,8 @@ const HeroContent = styled.div`
   align-items: flex-start;
   justify-content: center;
   padding-right: 2rem;
+  position: relative;
+  z-index: 2;
 
   @media (max-width: 1024px) {
     align-items: center;
@@ -75,20 +104,6 @@ const HeroButton = styled(motion.a)`
     background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
     transform: scale(1.05);
     box-shadow: 0 16px 40px rgba(252,92,125,0.25);
-  }
-`;
-
-const VideoWrapper = styled(motion.div)`
-  flex: 1;
-  max-width: 600px;
-  border-radius: 30px;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-  aspect-ratio: 16/9;
-
-  @media (max-width: 1024px) {
-    max-width: 100%;
-    margin-top: 2rem;
   }
 `;
 
@@ -225,20 +240,15 @@ export default function Bisnis() {
   return (
     <>
       <HeroSection>
-        <VideoWrapper
-          initial={{ x: -120, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1.1, delay: 0.3 }}
-        >
+        <VideoBackground>
           <video 
             src="/videobg.mp4" 
             autoPlay 
             loop 
             muted 
             playsInline 
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
-        </VideoWrapper>
+        </VideoBackground>
         <HeroContent>
           <HeroTitle initial={{ y: -40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
             Layanan Bisnis Digital
