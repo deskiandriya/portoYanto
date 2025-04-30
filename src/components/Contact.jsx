@@ -301,7 +301,7 @@ const Contact = () => {
               <i className="fas fa-map-marker-alt"></i>
               <div>
                 <h3>Location</h3>
-                <p>Jakarta, Indonesia</p>
+                <p>Tegal, Indonesia</p>
               </div>
             </ContactMethod>
           </ContactMethods>
