@@ -13,11 +13,8 @@ const slideIn = keyframes`
 `;
 
 const AboutSection = styled.section`
-  padding: 8rem 2rem;
-  background: ${({ theme }) => theme.background};
   position: relative;
   overflow: hidden;
-
   &::before {
     content: '';
     position: absolute;

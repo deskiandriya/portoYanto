@@ -2,15 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const ProjectsSection = styled.section`
-  padding: 6rem 2rem;
-  background: ${({ theme }) => theme.background};
   position: relative;
   overflow: hidden;
-
   @media (max-width: 768px) {
-    padding: 4rem 1rem;
+    padding: 0;
   }
-
   &::before {
     content: '';
     position: absolute;

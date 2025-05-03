@@ -14,11 +14,11 @@ const fadeIn = keyframes`
 `;
 
 const ContactSection = styled.section`
-  padding: 8rem 2rem;
-  background: ${({ theme }) => theme.background};
   position: relative;
   overflow: hidden;
-
+  @media (max-width: 768px) {
+    padding: 0;
+  }
   &::before {
     content: '';
     position: absolute;
@@ -29,10 +29,6 @@ const ContactSection = styled.section`
     background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
     opacity: 0.1;
     transform: rotate(-45deg);
-  }
-
-  @media (max-width: 768px) {
-    padding: 4rem 1rem;
   }
 `;
 

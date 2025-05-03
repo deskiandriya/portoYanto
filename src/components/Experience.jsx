@@ -13,12 +13,9 @@ const fadeInUp = keyframes`
 `;
 
 const ExperienceSection = styled.section`
-  padding: 8rem 2rem;
-  background: ${({ theme }) => theme.background};
   position: relative;
-
   @media (max-width: 768px) {
-    padding: 4rem 1rem;
+    padding: 0;
   }
 `;
 
