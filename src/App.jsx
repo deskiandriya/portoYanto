@@ -65,7 +65,7 @@ const ProfileImage = styled.img`
 const HeroBackground = styled.div`
   min-height: 100vh;
   width: 100vw;
-  background: #1B3B6F;
+  background: #2E4C54;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -171,7 +171,7 @@ const VideoMockup = styled.video`
   height: auto;
   aspect-ratio: 16/10;
   border-radius: 0;
-  background: #1B3B6F;
+  background: #2E4C54;
   object-fit: cover;
   @media (max-width: 900px) {
     max-width: 95vw;
