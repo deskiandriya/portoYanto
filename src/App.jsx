@@ -122,10 +122,12 @@ const MainCard = styled.div`
   display: flex;
   align-items: stretch;
   gap: 3rem;
+  margin: 4rem auto 3rem auto;
   @media (max-width: 900px) {
     flex-direction: column;
     padding: 2rem 1rem;
     gap: 2rem;
+    margin: 2rem 0 2rem 0;
   }
   animation: ${fadeInUp} 1.2s 0.1s both;
 `;
@@ -309,13 +311,19 @@ function Home({ theme, toggleTheme }) {
             </CardVideoMockup>
           </RightCard>
         </MainCard>
+        <MainCard>
+          <div className="content-section" id="about"><About /></div>
+        </MainCard>
+        <MainCard>
+          <div className="content-section" id="experience"><Experience /></div>
+        </MainCard>
+        <MainCard>
+          <div className="content-section" id="projects"><Projects /></div>
+        </MainCard>
+        <MainCard>
+          <div className="content-section" id="contact"><Contact /></div>
+        </MainCard>
       </DotsBackground>
-      <Layout>
-        <div className="content-section" id="about"><About /></div>
-        <div className="content-section" id="experience"><Experience /></div>
-        <div className="content-section" id="projects"><Projects /></div>
-        <div className="content-section" id="contact"><Contact /></div>
-      </Layout>
     </>
   );
 }
