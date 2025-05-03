@@ -9,6 +9,8 @@ import styled, { keyframes } from 'styled-components';
 import profileImage from './assets/images/profile.jpg';
 import HyroFinance from './pages/HyroFinance';
 import Bisnis from './pages/Bisnis';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(20px); }
@@ -21,6 +23,29 @@ const floatAnimation = keyframes`
   100% { transform: translateY(0px); }
 `;
 
+const NavbarStyled = styled(Navbar)`
+  background: rgba(35, 39, 47, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  .navbar-brand {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+  .nav-link {
+    color: #bfc6d1 !important;
+    margin: 0 0.5rem;
+    transition: color 0.3s;
+    &:hover {
+      color: #45b7d1 !important;
+    }
+  }
+`;
+
 const HeroBackground = styled.div`
   min-height: 100vh;
   width: 100vw;
@@ -29,6 +54,7 @@ const HeroBackground = styled.div`
   align-items: center;
   justify-content: center;
   padding: 0;
+  margin-top: 76px;
 `;
 
 const HeroContent = styled.div`
@@ -138,24 +164,45 @@ const VideoMockup = styled.video`
   }
 `;
 
+function Navigation() {
+  return (
+    <NavbarStyled expand="lg" variant="dark">
+      <Container>
+        <Navbar.Brand href="#home">Deski Andriyanto</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#about">About</Nav.Link>
+            <Nav.Link href="#experience">Experience</Nav.Link>
+            <Nav.Link href="#projects">Projects</Nav.Link>
+            <Nav.Link href="#contact">Contact</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </NavbarStyled>
+  );
+}
+
 function Home() {
   useEffect(() => {
     document.title = "Deski Andriyanto - Web Developer";
   }, []);
   return (
     <>
+      <Navigation />
       <HeroBackground>
         <HeroContent>
           <LeftHero>
             <HeroTitle>
-              The first <span className="gradient">Foundation AI</span><br />for Blockchain
+              Hi, I'm <span className="gradient">Deski Andriyanto</span><br />Web Developer
             </HeroTitle>
             <HeroDesc>
-              Built to redefine the realm of possibility for blockchains.<br />
-              Zark AI is engineered exclusively for blockchain applications, enabling smarter decisions, secure transactions, real-time insights and effortless automation.
+              A passionate web developer with expertise in creating modern and responsive web applications. 
+              I specialize in React, JavaScript, and full-stack development, bringing ideas to life through clean and efficient code.
             </HeroDesc>
-            <HeroButton href="#" >
-              Join Waitlist <span style={{fontSize:'1.3em',marginLeft:'0.2em'}}>&rarr;</span>
+            <HeroButton href="#contact" >
+              Get in Touch <span style={{fontSize:'1.3em',marginLeft:'0.2em'}}>&rarr;</span>
             </HeroButton>
           </LeftHero>
           <RightHero>
