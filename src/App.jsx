@@ -5,13 +5,15 @@ import Projects from './components/Projects';
 import About from './components/About';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, ThemeProvider } from 'styled-components';
 import profileImage from './assets/images/profile.jpg';
 import HyroFinance from './pages/HyroFinance';
 import Bisnis from './pages/Bisnis';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { FaSun, FaMoon } from 'react-icons/fa';
+import { lightTheme, darkTheme } from './themes';
+import GlobalStyles from './styles/GlobalStyles';
 
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(20px); }
@@ -63,7 +65,7 @@ const ProfileImage = styled.img`
 const HeroBackground = styled.div`
   min-height: 100vh;
   width: 100vw;
-  background: #365b6d;
+  background: #1B3B6F;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,7 +171,7 @@ const VideoMockup = styled.video`
   height: auto;
   aspect-ratio: 16/10;
   border-radius: 0;
-  background: #365b6d;
+  background: #1B3B6F;
   object-fit: cover;
   @media (max-width: 900px) {
     max-width: 95vw;
@@ -195,22 +197,7 @@ const ThemeToggle = styled.button`
   }
 `;
 
-function Navigation() {
-  const [theme, setTheme] = useState('dark');
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-  };
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    setTheme(savedTheme);
-    document.documentElement.setAttribute('data-theme', savedTheme);
-  }, []);
-
+function Navigation({ theme, toggleTheme }) {
   return (
     <NavbarStyled expand="lg" variant="dark">
       <Container>
@@ -233,13 +220,13 @@ function Navigation() {
   );
 }
 
-function Home() {
+function Home({ theme, toggleTheme }) {
   useEffect(() => {
     document.title = "Deski Andriyanto - Web Developer";
   }, []);
   return (
     <>
-      <Navigation />
+      <Navigation theme={theme} toggleTheme={toggleTheme} />
       <HeroBackground>
         <HeroContent>
           <LeftHero>
@@ -273,12 +260,30 @@ function Home() {
 }
 
 function App() {
+  const [theme, setTheme] = useState('dark');
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  };
+
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/hyrofinance" element={<HyroFinance />} />
-      <Route path="/bisnis" element={<Bisnis />} />
-    </Routes>
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <GlobalStyles />
+      <Routes>
+        <Route path="/" element={<Home theme={theme} toggleTheme={toggleTheme} />} />
+        <Route path="/hyrofinance" element={<HyroFinance />} />
+        <Route path="/bisnis" element={<Bisnis />} />
+      </Routes>
+    </ThemeProvider>
   );
 }
 

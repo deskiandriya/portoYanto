@@ -49,13 +49,6 @@ const Layout = ({ children }) => {
       <GlobalStyles colorScheme={colorScheme} />
       <ParallaxEffect />
       <div className="layout">
-        <div className={`theme-controls ${scrolled ? 'scrolled' : ''}`}>
-          <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-          <ColorSchemeSelector 
-            currentScheme={colorScheme}
-            onChange={changeColorScheme}
-          />
-        </div>
         {children}
       </div>
     </ThemeProvider>
