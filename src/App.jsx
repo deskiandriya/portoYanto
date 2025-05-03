@@ -254,6 +254,20 @@ const ThemeToggle = styled.button`
   }
 `;
 
+const HeroCard = styled(MainCard)`
+  display: flex;
+  align-items: stretch;
+  gap: 3rem;
+`;
+
+const SectionCard = styled(MainCard)`
+  display: block;
+  padding: 3.5rem 3rem 3rem 3rem;
+  @media (max-width: 900px) {
+    padding: 2rem 1rem;
+  }
+`;
+
 function Navigation({ theme, toggleTheme }) {
   const [clock, setClock] = useState(new Date());
   useEffect(() => {
@@ -291,7 +305,7 @@ function Home({ theme, toggleTheme }) {
     <>
       <Navigation theme={theme} toggleTheme={toggleTheme} />
       <DotsBackground>
-        <MainCard>
+        <HeroCard>
           <LeftCard>
             <ProfileImage src={profileImage} alt="Deski Andriyanto" />
             <HeroTitle>
@@ -310,19 +324,19 @@ function Home({ theme, toggleTheme }) {
               <source src="/videoutama.mp4" type="video/mp4" />
             </CardVideoMockup>
           </RightCard>
-        </MainCard>
-        <MainCard>
+        </HeroCard>
+        <SectionCard>
           <div className="content-section" id="about"><About /></div>
-        </MainCard>
-        <MainCard>
+        </SectionCard>
+        <SectionCard>
           <div className="content-section" id="experience"><Experience /></div>
-        </MainCard>
-        <MainCard>
+        </SectionCard>
+        <SectionCard>
           <div className="content-section" id="projects"><Projects /></div>
-        </MainCard>
-        <MainCard>
+        </SectionCard>
+        <SectionCard>
           <div className="content-section" id="contact"><Contact /></div>
-        </MainCard>
+        </SectionCard>
       </DotsBackground>
     </>
   );
