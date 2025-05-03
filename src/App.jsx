@@ -90,58 +90,83 @@ const ProfileImage = styled.img`
   }
 `;
 
-const HeroBackground = styled.div`
+const DotsBackground = styled.div`
   min-height: 100vh;
   width: 100vw;
   background: #181c23;
   position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  margin-top: 76px;
-  overflow: hidden;
-
+  z-index: 0;
   &::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 60vw;
-    height: 100%;
-    background: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="2" fill="%23365b6d" fill-opacity="0.18"/></svg>');
-    opacity: 0.7;
+    inset: 0;
+    background: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="2" fill="%23365b6d" fill-opacity="0.18"/></svg>');
+    opacity: 0.5;
     z-index: 1;
   }
 `;
 
-const HeroContent = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100vw;
-  max-width: 1400px;
-  padding: 0 2rem;
-  gap: 2.5rem;
+const MainCard = styled.div`
   position: relative;
   z-index: 2;
+  background: rgba(30, 36, 50, 0.98);
+  border-radius: 32px;
+  box-shadow: 0 12px 48px 0 rgba(0,0,0,0.45);
+  padding: 3.5rem 3rem 3rem 3rem;
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  gap: 3rem;
   @media (max-width: 900px) {
     flex-direction: column;
     padding: 2rem 1rem;
     gap: 2rem;
   }
+  animation: ${fadeInUp} 1.2s 0.1s both;
 `;
 
-const LeftHero = styled.div`
+const LeftCard = styled.div`
   flex: 1.2;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  z-index: 2;
   @media (max-width: 900px) {
     align-items: center;
     text-align: center;
+  }
+`;
+
+const RightCard = styled.div`
+  flex: 1.3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 900px) {
+    width: 100%;
+    margin-top: 2rem;
+  }
+`;
+
+const CardVideoMockup = styled.video`
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  aspect-ratio: 16/10;
+  border-radius: 18px;
+  background: #23272f;
+  object-fit: cover;
+  box-shadow: 0 8px 40px 0 rgba(0,0,0,0.45);
+  opacity: 0;
+  animation: ${fadeInUp} 1s 1s forwards;
+  @media (max-width: 900px) {
+    max-width: 95vw;
+    border-radius: 12px;
   }
 `;
 
@@ -208,35 +233,6 @@ const HeroButton = styled.a`
   }
 `;
 
-const RightHero = styled.div`
-  flex: 1.3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  @media (max-width: 900px) {
-    width: 100%;
-    margin-top: 2rem;
-  }
-`;
-
-const VideoMockup = styled.video`
-  width: 100%;
-  max-width: 700px;
-  height: auto;
-  aspect-ratio: 16/10;
-  border-radius: 18px;
-  background: #23272f;
-  object-fit: cover;
-  box-shadow: 0 8px 40px 0 rgba(0,0,0,0.45);
-  opacity: 0;
-  animation: ${fadeInUp} 1s 1s forwards;
-  @media (max-width: 900px) {
-    max-width: 95vw;
-    border-radius: 12px;
-  }
-`;
-
 const ThemeToggle = styled.button`
   background: transparent;
   border: none;
@@ -285,48 +281,16 @@ function Navigation({ theme, toggleTheme }) {
   );
 }
 
-const AnimatedHeroBackground = styled(HeroBackground)`
-  background: linear-gradient(120deg, #2E4C54 0%, #365b6d 100%);
-  background-size: 200% 200%;
-  animation: gradientMove 10s ease-in-out infinite alternate;
-`;
-
 function Home({ theme, toggleTheme }) {
-  const heroRef = useRef();
   useEffect(() => {
     document.title = "Deski Andriyanto - Web Developer";
-    // Parallax effect
-    const handleMouseMove = (e) => {
-      if (!heroRef.current) return;
-      const { left, top, width, height } = heroRef.current.getBoundingClientRect();
-      const x = (e.clientX - left) / width;
-      const y = (e.clientY - top) / height;
-      heroRef.current.style.backgroundPosition = `${50 + x * 10}% ${50 + y * 10}%`;
-    };
-    const node = heroRef.current;
-    node && node.addEventListener('mousemove', handleMouseMove);
-    return () => node && node.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-  // Reveal on scroll
-  useEffect(() => {
-    const reveal = () => {
-      document.querySelectorAll('.content-section').forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          el.classList.add('visible');
-        }
-      });
-    };
-    window.addEventListener('scroll', reveal);
-    reveal();
-    return () => window.removeEventListener('scroll', reveal);
   }, []);
   return (
     <>
       <Navigation theme={theme} toggleTheme={toggleTheme} />
-      <AnimatedHeroBackground ref={heroRef}>
-        <HeroContent>
-          <LeftHero>
+      <DotsBackground>
+        <MainCard>
+          <LeftCard>
             <ProfileImage src={profileImage} alt="Deski Andriyanto" />
             <HeroTitle>
               Hi, I'm <span className="gradient">Deski Andriyanto</span><br />
@@ -338,14 +302,14 @@ function Home({ theme, toggleTheme }) {
             <HeroButton href="#contact">
               Get in Touch <span style={{fontSize:'1.3em',marginLeft:'0.2em'}}>&rarr;</span>
             </HeroButton>
-          </LeftHero>
-          <RightHero>
-            <VideoMockup autoPlay loop muted playsInline>
+          </LeftCard>
+          <RightCard>
+            <CardVideoMockup autoPlay loop muted playsInline>
               <source src="/videoutama.mp4" type="video/mp4" />
-            </VideoMockup>
-          </RightHero>
-        </HeroContent>
-      </AnimatedHeroBackground>
+            </CardVideoMockup>
+          </RightCard>
+        </MainCard>
+      </DotsBackground>
       <Layout>
         <div className="content-section" id="about"><About /></div>
         <div className="content-section" id="experience"><Experience /></div>
