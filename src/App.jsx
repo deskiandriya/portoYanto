@@ -50,37 +50,54 @@ const NavbarStyled = styled(Navbar)`
 `;
 
 const ProfileImage = styled.img`
-  width: 150px;
-  height: 150px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
   margin-bottom: 2rem;
   border: 4px solid #45b7d1;
   object-fit: cover;
+  background: #fff;
   @media (max-width: 900px) {
-    width: 120px;
-    height: 120px;
+    width: 90px;
+    height: 90px;
   }
 `;
 
 const HeroBackground = styled.div`
   min-height: 100vh;
   width: 100vw;
-  background: #2E4C54;
+  background: #181c23;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
   margin-top: 76px;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 60vw;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="2" fill="%23365b6d" fill-opacity="0.18"/></svg>');
+    opacity: 0.7;
+    z-index: 1;
+  }
 `;
 
 const HeroContent = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100vw;
   max-width: 1400px;
   padding: 0 2rem;
   gap: 2.5rem;
+  position: relative;
+  z-index: 2;
   @media (max-width: 900px) {
     flex-direction: column;
     padding: 2rem 1rem;
@@ -102,7 +119,7 @@ const LeftHero = styled.div`
 `;
 
 const HeroTitle = styled.h1`
-  font-size: 3.2rem;
+  font-size: 3.5rem;
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: 1.5rem;
@@ -114,14 +131,15 @@ const HeroTitle = styled.h1`
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
+    font-weight: 900;
   }
   @media (max-width: 600px) {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 `;
 
 const HeroDesc = styled.p`
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   color: #bfc6d1;
   margin-bottom: 2.5rem;
   max-width: 500px;
@@ -167,14 +185,16 @@ const RightHero = styled.div`
 
 const VideoMockup = styled.video`
   width: 100%;
-  max-width: 800px;
+  max-width: 700px;
   height: auto;
   aspect-ratio: 16/10;
-  border-radius: 0;
-  background: #2E4C54;
+  border-radius: 18px;
+  background: #23272f;
   object-fit: cover;
+  box-shadow: 0 8px 40px 0 rgba(0,0,0,0.45);
   @media (max-width: 900px) {
     max-width: 95vw;
+    border-radius: 12px;
   }
 `;
 
@@ -232,14 +252,14 @@ function Home({ theme, toggleTheme }) {
           <LeftHero>
             <ProfileImage src={profileImage} alt="Deski Andriyanto" />
             <HeroTitle>
-              Hi, I'm <span className="gradient">Deski Andriyanto</span><br />Web Developer
+              The first <span className="gradient">Foundation AI</span><br />for Blockchain
             </HeroTitle>
             <HeroDesc>
-              A passionate web developer with expertise in creating modern and responsive web applications. 
-              I specialize in React, JavaScript, and full-stack development, bringing ideas to life through clean and efficient code.
+              Built to redefine the realm of possibility for blockchains.<br />
+              Zark AI is engineered exclusively for blockchain applications, enabling smarter decisions, secure transactions, real-time insights and effortless automation.
             </HeroDesc>
             <HeroButton href="#contact" >
-              Get in Touch <span style={{fontSize:'1.3em',marginLeft:'0.2em'}}>&rarr;</span>
+              Join Waitlist <span style={{fontSize:'1.3em',marginLeft:'0.2em'}}>&rarr;</span>
             </HeroButton>
           </LeftHero>
           <RightHero>
