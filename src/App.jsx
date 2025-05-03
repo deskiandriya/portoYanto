@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import Layout from './components/Layout';
 import Projects from './components/Projects';
@@ -11,6 +11,7 @@ import HyroFinance from './pages/HyroFinance';
 import Bisnis from './pages/Bisnis';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, Container } from 'react-bootstrap';
+import { FaSun, FaMoon } from 'react-icons/fa';
 
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(20px); }
@@ -62,7 +63,7 @@ const ProfileImage = styled.img`
 const HeroBackground = styled.div`
   min-height: 100vh;
   width: 100vw;
-  background: #1a1c23;
+  background: #365b6d;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -168,14 +169,48 @@ const VideoMockup = styled.video`
   height: auto;
   aspect-ratio: 16/10;
   border-radius: 0;
-  background: #1a1c23;
+  background: #365b6d;
   object-fit: cover;
   @media (max-width: 900px) {
     max-width: 95vw;
   }
 `;
 
+const ThemeToggle = styled.button`
+  background: transparent;
+  border: none;
+  color: ${({ theme }) => theme.text};
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    transform: scale(1.1);
+    color: #45b7d1;
+  }
+`;
+
 function Navigation() {
+  const [theme, setTheme] = useState('dark');
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  };
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }, []);
+
   return (
     <NavbarStyled expand="lg" variant="dark">
       <Container>
@@ -188,6 +223,9 @@ function Navigation() {
             <Nav.Link href="#experience">Experience</Nav.Link>
             <Nav.Link href="#projects">Projects</Nav.Link>
             <Nav.Link href="#contact">Contact</Nav.Link>
+            <ThemeToggle onClick={toggleTheme}>
+              {theme === 'light' ? <FaMoon /> : <FaSun />}
+            </ThemeToggle>
           </Nav>
         </Navbar.Collapse>
       </Container>
