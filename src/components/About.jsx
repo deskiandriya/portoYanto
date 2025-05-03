@@ -155,7 +155,7 @@ const ProgressBar = styled.div`
     left: 0;
     top: 0;
     height: 100%;
-    width: ${props => props.progress}%;
+    width: ${props => props.$progress}%;
     background: var(--color-primary);
     border-radius: 4px;
     animation: progressAnimation 1.5s ease-out forwards;
@@ -180,7 +180,7 @@ const ProgressBar = styled.div`
 const Skill = ({ name, progress }) => (
   <SkillItem>
     <SkillName>{name}</SkillName>
-    <ProgressBar progress={progress} />
+    <ProgressBar $progress={progress} />
   </SkillItem>
 );
 

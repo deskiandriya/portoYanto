@@ -72,12 +72,12 @@ const Timeline = styled.div`
 
 const TimelineItem = styled.div`
   display: flex;
-  justify-content: ${props => props.align === 'right' ? 'flex-end' : 'flex-start'};
+  justify-content: ${props => props.$align === 'right' ? 'flex-end' : 'flex-start'};
   padding-bottom: 3rem;
   width: 100%;
   opacity: 0;
   animation: ${fadeInUp} 0.6s ease forwards;
-  animation-delay: ${props => props.delay}s;
+  animation-delay: ${props => props.$delay}s;
 
   @media (max-width: 768px) {
     justify-content: flex-start;
@@ -105,7 +105,7 @@ const TimelineContent = styled.div`
     content: '';
     position: absolute;
     top: 20px;
-    ${props => props.align === 'right' ? 'left: -15px;' : 'right: -15px;'};
+    ${props => props.$align === 'right' ? 'left: -15px;' : 'right: -15px;'};
     width: 30px;
     height: 30px;
     background: var(--color-primary);
@@ -209,8 +209,8 @@ const Experience = () => {
         <SectionTitle>Work Experience</SectionTitle>
         <Timeline>
           {experiences.map((exp, index) => (
-            <TimelineItem key={index} align={exp.align} delay={0.2 * (index + 1)}>
-              <TimelineContent align={exp.align}>
+            <TimelineItem key={index} $align={exp.align} $delay={0.2 * (index + 1)}>
+              <TimelineContent $align={exp.align}>
                 <TimelinePeriod>{exp.period}</TimelinePeriod>
                 <TimelineTitle>{exp.title}</TimelineTitle>
                 <TimelineCompany>{exp.company}</TimelineCompany>
