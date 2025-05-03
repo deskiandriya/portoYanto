@@ -22,6 +22,7 @@ const ExperienceSection = styled.section`
 const Container = styled.div`
   max-width: 1000px;
   margin: 0 auto;
+  opacity: 1;
 `;
 
 const SectionTitle = styled.h2`

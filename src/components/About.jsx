@@ -37,9 +37,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
-  opacity: 0;
-  animation: ${slideIn} 0.8s ease forwards;
-  animation-delay: 0.2s;
+  opacity: 1;
   padding: 0 1rem;
 
   @media (max-width: 768px) {

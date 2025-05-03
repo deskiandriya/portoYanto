@@ -28,6 +28,7 @@ const ProjectsGrid = styled.div`
   margin: 0 auto;
   position: relative;
   z-index: 1;
+  opacity: 1;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
