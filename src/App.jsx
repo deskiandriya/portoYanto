@@ -46,10 +46,23 @@ const NavbarStyled = styled(Navbar)`
   }
 `;
 
+const ProfileImage = styled.img`
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 2rem;
+  border: 4px solid #45b7d1;
+  object-fit: cover;
+  @media (max-width: 900px) {
+    width: 120px;
+    height: 120px;
+  }
+`;
+
 const HeroBackground = styled.div`
   min-height: 100vh;
   width: 100vw;
-  background: repeating-linear-gradient(135deg, #23272f 0px, #23272f 40px, #22252b 40px, #22252b 80px);
+  background: #1a1c23;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -151,16 +164,14 @@ const RightHero = styled.div`
 
 const VideoMockup = styled.video`
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   height: auto;
   aspect-ratio: 16/10;
-  border-radius: 24px;
-  box-shadow: 0 8px 40px 0 rgba(0,0,0,0.45);
-  background: #181a20;
+  border-radius: 0;
+  background: #1a1c23;
   object-fit: cover;
   @media (max-width: 900px) {
     max-width: 95vw;
-    border-radius: 18px;
   }
 `;
 
@@ -194,6 +205,7 @@ function Home() {
       <HeroBackground>
         <HeroContent>
           <LeftHero>
+            <ProfileImage src={profileImage} alt="Deski Andriyanto" />
             <HeroTitle>
               Hi, I'm <span className="gradient">Deski Andriyanto</span><br />Web Developer
             </HeroTitle>
