@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
-  background-color: #333;
+  background-color: #181c2a;
   color: white;
   padding: 20px 0;
   text-align: center;
@@ -19,7 +19,7 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterContent>
-        <p>&copy; {new Date().getFullYear()} Your Company Name. All rights reserved.</p>
+        <p>© 2024 Deski Andriyanto. All rights reserved.</p>
       </FooterContent>
     </FooterContainer>
   );

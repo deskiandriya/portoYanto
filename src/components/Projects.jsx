@@ -253,6 +253,8 @@ const Projects = () => {
         {projects.map((project, index) => (
           <ProjectCard 
             key={index}
+            data-aos="zoom-in"
+            data-aos-delay={index * 100}
             onClick={() => handleProjectClick(project)}
           >
             <ProjectImage src={project.image} alt={project.title} />

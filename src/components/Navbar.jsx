@@ -10,8 +10,8 @@ const Nav = styled.nav`
   z-index: 1000;
   padding: 1.2rem 2rem;
   transition: all 0.3s ease;
-  background: ${({ scrolled }) =>
-    scrolled ? 'rgba(10, 10, 10, 0.92)' : 'rgba(10, 10, 10, 0.7)'};
+  background: ${({ $scrolled }) =>
+    $scrolled ? 'rgba(10, 10, 10, 0.92)' : 'rgba(10, 10, 10, 0.7)'};
   backdrop-filter: blur(16px);
   box-shadow: 0 2px 24px rgba(0,0,0,0.08);
 `;
@@ -149,7 +149,7 @@ const Navbar = () => {
 
   return (
     <>
-      <Nav scrolled={scrolled}>
+      <Nav $scrolled={scrolled}>
         <NavContainer>
           <Logo href="#home" onClick={e => handleNavClick(e, 'home')}>Deski</Logo>
           <NavLinks>

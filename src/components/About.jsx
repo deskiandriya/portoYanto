@@ -202,7 +202,7 @@ const About = () => {
   return (
     <AboutSection id="about">
       <Container>
-        <AboutContent>
+        <AboutContent data-aos="fade-right">
           <h2>About Me</h2>
           <p>      
             As an enthusiastic Full Stack Developer, I enjoy the challenge of turning complex problems into simple and elegant solutions. 
@@ -213,7 +213,7 @@ const About = () => {
             I believe that writing clean and maintainable code is the key to building applications that can continue to evolve over time.
           </p>
         </AboutContent>
-        <SkillsContainer>
+        <SkillsContainer data-aos="fade-left">
           <h3>Technical Expertise</h3>
           <SkillGrid>
             <SkillCategory>

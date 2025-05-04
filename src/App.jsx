@@ -1,6 +1,12 @@
-import React from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import React, { useState } from 'react';
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Particles from './components/Particles';
+import ParallaxEffect from './components/ParallaxEffect';
+import ThemeToggle from './components/ThemeToggle';
 import { Outlet } from 'react-router-dom';
+import AnimatedBlobsBackground from './components/AnimatedBlobsBackground';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -22,16 +28,55 @@ const AppContainer = styled.div`
   min-height: 100vh;
   width: 100vw;
   background: none;
+  display: flex;
+  flex-direction: column;
 `;
 
-function App() {
+const MainContent = styled.main`
+  flex: 1 0 auto;
+  width: 100%;
+  margin-top: 70px;
+`;
+
+const themeLight = {
+  mode: 'light',
+  background: '#f8fafc',
+  text: '#181c2a',
+  secondary: '#6a82fb',
+  cardBackground: '#fff',
+  tagBackground: '#f1f5f9',
+  toggleBackground: '#fff',
+  toggleBorder: '#e2e8f0',
+};
+const themeDark = {
+  mode: 'dark',
+  background: '#0a0a0a',
+  text: '#fff',
+  secondary: '#fc5c7d',
+  cardBackground: '#181c2a',
+  tagBackground: '#23272f',
+  toggleBackground: '#181c2a',
+  toggleBorder: '#23272f',
+};
+
+function App({ children }) {
+  const [theme, setTheme] = useState('dark');
+  const [colorScheme, setColorScheme] = useState('blue');
+  const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
+
   return (
-    <>
+    <ThemeProvider theme={{ ...(theme === 'dark' ? themeDark : themeLight), colorScheme }}>
       <GlobalStyle />
       <AppContainer>
-        <Outlet />
+        <AnimatedBlobsBackground />
+        <Particles />
+        <ParallaxEffect />
+        <Navbar />
+        <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+        <MainContent><Outlet /></MainContent>
+        <Footer />
       </AppContainer>
-    </>
+    </ThemeProvider>
   );
 }
 

@@ -274,7 +274,7 @@ const Contact = () => {
     <ContactSection id="contact">
       <Container>
         <ContactInfo>
-          <h2>Get in Touch</h2>
+          <h2 data-aos="fade-up">Get In Touch</h2>
           <p>
             I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.
             Feel free to reach out to me through any of the following methods.

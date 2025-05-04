@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaInstagram, FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaExclamationTriangle } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
-import profileImg from '../assets/images/profile.jpg';
 import project1 from "../assets/images/project1.png";
 import project2 from "../assets/images/project2.jpg";
+import profileNoBg from '../assets/images/profile.png';
 
 // --- Hero Section ---
 const HeroSection = styled.section`
@@ -83,7 +83,7 @@ const Video = styled.video`
   object-fit: cover;
   display: block;
   border-radius: 32px;
-  opacity: 0.1;
+  opacity: 0.25;
   filter: contrast(2);
 `;
 
@@ -358,77 +358,194 @@ const ClockDigital = styled.span`
 `;
 
 // --- About Section ---
-const AboutGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  max-width: 950px;
+const AboutSection = styled(Section)`
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3rem;
+  background: none;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  @media (max-width: 900px) {
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
   @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 0 0.3rem;
+    gap: 1.2rem;
+    padding: 1.2rem 0.5rem 2rem 0.5rem;
+  }
+  @media (max-width: 500px) {
+    padding: 1.2rem 0.2rem 2rem 0.2rem;
+    gap: 0.7rem;
   }
 `;
-
-const AboutTitle = styled.h3`
-  font-size: 1.25rem;
-  font-weight: 800;
-  margin-bottom: 0.7rem;
-  color: #fff;
+const AboutTextCol = styled.div`
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 700px;
+  margin-right: 2rem;
+  @media (max-width: 900px) {
+    margin-right: 0;
+    max-width: 100%;
+  }
   @media (max-width: 600px) {
-    font-size: 1.05rem;
-    margin-bottom: 0.4rem;
+    margin-right: 0;
+    max-width: 100%;
+    text-align: center;
+  }
+  @media (max-width: 500px) {
+    padding: 0 0.2rem;
   }
 `;
-
+const AboutPhotoCol = styled.div`
+  flex: 0 0 260px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  position: relative;
+  @media (max-width: 900px) {
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  @media (max-width: 600px) {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  @media (max-width: 500px) {
+    margin-bottom: 2.2rem;
+  }
+`;
+const AboutPhotoGlow = styled.div`
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #6a82fb55 0%, #fc5c7d22 80%, transparent 100%);
+  filter: blur(32px);
+  z-index: 0;
+  @media (max-width: 600px) {
+    width: 140px;
+    height: 140px;
+    top: 10px;
+  }
+  @media (max-width: 500px) {
+    width: 110px;
+    height: 110px;
+    top: 0;
+  }
+`;
+const AboutPhoto = styled(motion.img)`
+  width: 220px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: 0 8px 40px rgba(106,130,251,0.18);
+  position: relative;
+  z-index: 1;
+  background: none;
+  border: none;
+  @media (max-width: 600px) {
+    width: 140px;
+    margin-bottom: 1.2rem;
+  }
+  @media (max-width: 500px) {
+    width: 90px;
+    margin-bottom: 1.7rem;
+  }
+`;
+const GradientTitle = styled(SectionTitle)`
+  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 2.2rem;
+  text-align: left;
+  @media (max-width: 900px) {
+    text-align: center;
+    font-size: 2rem;
+  }
+  @media (max-width: 600px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+`;
 const AboutText = styled.p`
   color: #bdbdbd;
-  font-size: 1rem;
-  margin-bottom: 1.2rem;
+  font-size: 1.13rem;
+  margin-bottom: 2.2rem;
+  line-height: 1.7;
   @media (max-width: 600px) {
-    font-size: 0.93rem;
-    margin-bottom: 0.7rem;
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
   }
 `;
-
-const Timeline = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`;
-
-const TimelineItem = styled.li`
-  margin-bottom: 1.5rem;
-  position: relative;
-  padding-left: 1.5rem;
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.5rem;
-    width: 10px;
-    height: 10px;
-    background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
-    border-radius: 50%;
-  }
-`;
-
-const TimelineTitle = styled.span`
-  font-weight: 600;
+const EducationTitle = styled.h4`
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 2.5rem 0 1.2rem 0;
   color: #fff;
+  @media (max-width: 600px) {
+    margin: 1.5rem 0 0.7rem 0;
+    font-size: 1.05rem;
+  }
 `;
-
-const TimelinePeriod = styled.span`
-  color: #6a82fb;
-  font-size: 0.95rem;
-  margin-left: 0.5rem;
+const EducationList = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  @media (max-width: 500px) {
+    gap: 0.5rem;
+  }
 `;
-
-const TimelineDesc = styled.div`
-  color: #bdbdbd;
+const EducationCard = styled(motion.div)`
+  background: rgba(20,20,24,0.65);
+  border-radius: 18px;
+  padding: 1.2rem 1.5rem;
+  box-shadow: 0 2px 12px rgba(106,130,251,0.10);
+  color: #fff;
   font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1.5px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+  transition: box-shadow 0.3s, transform 0.3s;
+  width: 100%;
+  &:hover {
+    box-shadow: 0 8px 32px #6a82fb33;
+    transform: translateY(-4px) scale(1.03);
+    border-color: #6a82fb;
+  }
+  @media (max-width: 600px) {
+    padding: 0.8rem 0.7rem;
+    border-radius: 10px;
+    font-size: 0.97rem;
+  }
+  @media (max-width: 500px) {
+    padding: 0.7rem 0.3rem;
+    font-size: 0.93rem;
+  }
+`;
+const EducationPeriod = styled.span`
+  font-weight: 700;
+  color: #6a82fb;
+  margin-right: 0.7rem;
 `;
 
 // --- Contact Section (split) ---
@@ -884,41 +1001,59 @@ export default function Home() {
       </Section>
 
       {/* About Section */}
-      <Section id="about">
-        <SectionTitle
-          initial={{ y: -20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          About Me
-        </SectionTitle>
-        <AboutGrid>
-          <GlassCard
-            initial={{ y: 40, opacity: 0 }}
+      <AboutSection id="about">
+        <AboutTextCol>
+          <GradientTitle
+            initial={{ y: -20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <AboutTitle>Bio</AboutTitle>
-            <AboutText>
-              I am a modern web developer specializing in building elegant, responsive applications designed to deliver exceptional user experiences. With a strong attention to detail and a commitment to quality, I consistently strive to create innovative solutions that align with business goals and add real value to users. I believe that the synergy between the right technology and thoughtful design is the key to building truly impactful digital products.
-            </AboutText>
-            <AboutTitle style={{marginTop:'2rem'}}>Educational Experience</AboutTitle>
-            <Timeline>
-              <TimelineItem>
-                <TimelineTitle>2009-2015</TimelineTitle> — SDN Kalisapu 01
-              </TimelineItem>
-              <TimelineItem>
-                <TimelineTitle>2015-2018</TimelineTitle> — MTs N Slawi
-              </TimelineItem>
-              <TimelineItem>
-                <TimelineTitle>2018-2021</TimelineTitle> — SMKN 03 Tegal
-              </TimelineItem>
-            </Timeline>
-          </GlassCard>
-        </AboutGrid>
-      </Section>
+            About Me
+          </GradientTitle>
+          <AboutText>
+            I am a modern web developer specializing in building elegant, responsive applications designed to deliver exceptional user experiences. With a strong attention to detail and a commitment to quality, I consistently strive to create innovative solutions that align with business goals and add real value to users. I believe that the synergy between the right technology and thoughtful design is the key to building truly impactful digital products.
+          </AboutText>
+          <EducationTitle>Educational Experience</EducationTitle>
+          <EducationList>
+            <EducationCard
+              initial={{ y: 30, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <EducationPeriod>2009–2015</EducationPeriod> SDN Kalisapu 01
+            </EducationCard>
+            <EducationCard
+              initial={{ y: 30, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <EducationPeriod>2015–2018</EducationPeriod> MTs N Slawi
+            </EducationCard>
+            <EducationCard
+              initial={{ y: 30, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <EducationPeriod>2018–2021</EducationPeriod> SMKN 03 Tegal
+            </EducationCard>
+          </EducationList>
+        </AboutTextCol>
+        <AboutPhotoCol>
+          <AboutPhotoGlow />
+          <AboutPhoto
+            src={profileNoBg}
+            alt="Profile"
+            initial={{ scale: 0.9, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          />
+        </AboutPhotoCol>
+      </AboutSection>
 
       {/* Work Experience Section */}
       <WorkExpSection id="workexp">

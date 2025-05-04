@@ -18,7 +18,7 @@ const ColorOption = styled.button`
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  border: 2px solid ${({ isSelected }) => isSelected ? '#fff' : 'transparent'};
+  border: 2px solid ${({ $isSelected }) => $isSelected ? '#fff' : 'transparent'};
   background-color: ${({ color }) => color};
   cursor: pointer;
   transition: all 0.3s ease;
@@ -46,7 +46,7 @@ const ColorSchemeSelector = ({ currentScheme, onChange }) => {
         <ColorOption
           key={option.name}
           color={option.color}
-          isSelected={currentScheme === option.name}
+          $isSelected={currentScheme === option.name}
           onClick={() => onChange(option.name)}
           aria-label={`Select ${option.name} color scheme`}
         />
