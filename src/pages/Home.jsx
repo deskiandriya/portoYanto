@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaInstagram, FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
+import { FaInstagram, FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaExclamationTriangle } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import profileImg from '../assets/images/profile.jpg';
+import project1 from "../assets/images/project1.png";
+import project2 from "../assets/images/project2.jpg";
 
 // --- Hero Section ---
 const HeroSection = styled.section`
@@ -11,48 +13,92 @@ const HeroSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #000;
   position: relative;
-  background: none;
-  padding: 90px 1.5rem 0 1.5rem;
   overflow: hidden;
+  padding: 90px 0 0 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(106, 130, 251, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+    pointer-events: none;
+  }
 `;
 
-const HeroContentWrap = styled.div`
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 3.5rem;
-  max-width: 1100px;
+const HeroContent = styled.div`
+  max-width: 1400px;
   width: 100%;
-  @media (max-width: 900px) {
-    flex-direction: column;
-    gap: 2.2rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
+  padding: 0 4rem;
+  position: relative;
+  z-index: 1;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
     text-align: center;
+    padding: 4rem 2rem;
+    gap: 2rem;
   }
 `;
 
-const ProfileImg = styled(motion.img)`
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #232946;
-  box-shadow: 0 8px 32px rgba(106,130,251,0.13);
-  background: #181c2a;
-  @media (max-width: 600px) {
-    width: 120px;
-    height: 120px;
-  }
-`;
+const VideoContainer = styled.div`
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 9/16;
+  min-height: 100vh;
+  height: 100%;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transform: perspective(1000px) rotateY(-5deg) translateX(-20px);
+  transition: all 0.5s ease;
 
-const HeroText = styled.div`
-  flex: 1;
-  text-align: left;
-  max-width: 540px;
-  @media (max-width: 900px) {
-    text-align: center;
+  &:hover {
+    transform: perspective(1000px) rotateY(0deg) translateX(0);
+  }
+
+  @media (max-width: 1024px) {
     max-width: 100%;
+    margin: 0 auto 2rem auto;
+    transform: none;
+    min-height: 60vh;
+    height: 100%;
+    aspect-ratio: 9/16;
+  }
+`;
+
+const Video = styled.video`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 32px;
+  opacity: 0.1;
+  filter: contrast(2);
+`;
+
+const TextContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 600px;
+  text-align: left;
+  align-items: flex-start;
+
+  @media (max-width: 1024px) {
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
   }
 `;
 
@@ -92,17 +138,22 @@ const HeroDesc = styled(motion.p)`
 `;
 
 const HeroButton = styled(motion.a)`
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 1.1rem 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 3rem;
   background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
   color: #fff;
   border-radius: 50px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   text-decoration: none;
   box-shadow: 0 8px 32px rgba(106,130,251,0.2);
   transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+
   &:hover {
     background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
     transform: scale(1.05);
@@ -110,106 +161,108 @@ const HeroButton = styled(motion.a)`
   }
 `;
 
-const SocialLinks = styled.div`
-  display: flex;
-  gap: 1.2rem;
-  margin-top: 1.5rem;
-  @media (max-width: 900px) {
-    justify-content: center;
-  }
-`;
-
-const SocialIcon = styled.a`
-  color: #6a82fb;
-  font-size: 1.7rem;
-  transition: color 0.3s;
-  &:hover {
-    color: #fc5c7d;
-  }
-`;
-
-// --- Video Section ---
-const VideoSection = styled.section`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 4rem 0 2rem 0;
-  background: none;
-`;
-const VideoCard = styled.div`
-  width: 90vw;
-  max-width: 900px;
-  border-radius: 32px;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-  background: rgba(255,255,255,0.06);
-  border: 1.5px solid rgba(255,255,255,0.10);
-  backdrop-filter: blur(8px);
-`;
-const StyledVideo = styled.video`
-  width: 100%;
-  height: auto;
-  display: block;
-`;
-
 // --- Projects Section ---
 const Section = styled.section`
-  padding: 6rem 1rem 4rem 1rem;
-  background: none;
+  padding: 6rem 0 4rem 0;
+  background: #0a0a0a;
+  position: relative;
+  min-height: 100px;
+  @media (max-width: 900px) {
+    padding: 3rem 0 2rem 0;
+  }
+  @media (max-width: 600px) {
+    padding: 2rem 0 1.2rem 0;
+  }
 `;
 
 const SectionTitle = styled(motion.h2)`
-  font-size: 2.5rem;
-  font-weight: 800;
+  font-size: 2.1rem;
+  font-weight: 900;
   text-align: center;
-  margin-bottom: 3rem;
-  background: linear-gradient(90deg, #fff 0%, #6a82fb 50%, #fc5c7d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  margin-bottom: 2.7rem;
+  color: #fff;
+  letter-spacing: -1px;
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+  }
+  @media (max-width: 600px) {
+    font-size: 1.05rem;
+    margin-bottom: 1.2rem;
+  }
 `;
 
 const ProjectsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 2.5rem;
-  max-width: 1100px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 950px;
   margin: 0 auto;
+  padding: 0 1rem;
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 0.3rem;
+  }
 `;
 
 const ProjectCard = styled(motion.div)`
-  background: rgba(255,255,255,0.06);
-  border-radius: 22px;
-  padding: 2.2rem 1.7rem;
-  backdrop-filter: blur(12px);
-  border: 1.5px solid rgba(255,255,255,0.10);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  background: rgba(20,20,24,0.85);
+  border-radius: 24px;
+  padding: 2.2rem 1.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
   color: #fff;
-  transition: all 0.3s;
+  transition: all 0.2s cubic-bezier(.4,2,.6,1);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-bottom: 0.5rem;
   &:hover {
-    transform: translateY(-10px) scale(1.04);
-    box-shadow: 0 16px 40px rgba(106,130,251,0.13);
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 6px 24px rgba(106,130,251,0.13);
     border-color: #6a82fb;
-    background: rgba(106,130,251,0.08);
+    background: rgba(20,20,24,0.93);
+  }
+  @media (max-width: 600px) {
+    padding: 1.1rem 0.5rem;
+    border-radius: 14px;
+  }
+`;
+
+const ProjectImage = styled.img`
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 2px 12px rgba(106,130,251,0.10);
+  @media (max-width: 600px) {
+    height: 120px;
+    border-radius: 10px;
+    margin-bottom: 0.7rem;
   }
 `;
 
 const ProjectTitle = styled.h3`
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 800;
   margin-bottom: 0.7rem;
-  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #fff;
+  @media (max-width: 600px) {
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+  }
 `;
 
 const ProjectDesc = styled.p`
   color: #bdbdbd;
-  font-size: 1.05rem;
+  font-size: 1rem;
   margin-bottom: 1.2rem;
+  @media (max-width: 600px) {
+    font-size: 0.93rem;
+    margin-bottom: 0.7rem;
+  }
 `;
 
 const ProjectButton = styled.a`
@@ -229,43 +282,115 @@ const ProjectButton = styled.a`
   }
 `;
 
-// --- About Section ---
-const AboutGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3rem;
-  max-width: 1100px;
-  margin: 0 auto;
-  align-items: flex-start;
-  justify-content: center;
-`;
-
-const AboutCard = styled(motion.div)`
-  flex: 1 1 320px;
-  min-width: 320px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 22px;
-  padding: 2.5rem 2rem;
-  backdrop-filter: blur(12px);
-  border: 1.5px solid rgba(255,255,255,0.10);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+// Glassmorphism reusable card (softer)
+const GlassCard = styled(motion.div)`
+  background: rgba(20,20,24,0.85);
+  border-radius: 24px;
+  padding: 2.2rem 1.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
   color: #fff;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: all 0.2s cubic-bezier(.4,2,.6,1);
+  &:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 6px 24px rgba(106,130,251,0.13);
+    border-color: #6a82fb;
+    background: rgba(20,20,24,0.93);
+  }
+  @media (max-width: 600px) {
+    padding: 1.1rem 0.5rem;
+    border-radius: 14px;
+  }
 `;
 
-const AboutTitle = styled.h3`
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 1.2rem;
+const MapsFrame = styled.iframe`
+  width: 100%;
+  min-height: 300px;
+  border: none;
+  border-radius: 24px;
+  margin: 2rem 0 1.2rem 0;
+  box-shadow: 0 4px 24px rgba(106,130,251,0.13);
+`;
+
+const AddressLink = styled.a`
+  color: #fff;
+  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+  font-size: 1.08rem;
+  text-decoration: none;
+  margin-top: 0.7rem;
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  border-radius: 18px;
+  font-weight: 600;
+  box-shadow: 0 2px 12px rgba(106,130,251,0.10);
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  &:hover {
+    color: #fff;
+    background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
+    transform: scale(1.04);
+  }
+`;
+
+const ClockBox = styled.div`
+  margin-top: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+`;
+
+const ClockDigital = styled.span`
+  font-size: 2.1rem;
+  font-family: 'Share Tech Mono', monospace;
+  color: #fff;
   background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  letter-spacing: 2px;
+  min-width: 140px;
+  text-align: left;
+  transition: all 0.4s cubic-bezier(.4,2,.6,1);
+`;
+
+// --- About Section ---
+const AboutGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 0.3rem;
+  }
+`;
+
+const AboutTitle = styled.h3`
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 0.7rem;
+  color: #fff;
+  @media (max-width: 600px) {
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+  }
 `;
 
 const AboutText = styled.p`
   color: #bdbdbd;
-  font-size: 1.05rem;
+  font-size: 1rem;
   margin-bottom: 1.2rem;
+  @media (max-width: 600px) {
+    font-size: 0.93rem;
+    margin-bottom: 0.7rem;
+  }
 `;
 
 const Timeline = styled.ul`
@@ -306,7 +431,25 @@ const TimelineDesc = styled.div`
   font-size: 1rem;
 `;
 
-// --- Contact Section (single card) ---
+// --- Contact Section (split) ---
+const ContactGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  align-items: stretch;
+  justify-content: center;
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 600px) {
+    padding: 0 0.3rem;
+  }
+`;
+
 const ContactSection = styled.section`
   padding: 6rem 1rem 4rem 1rem;
   display: flex;
@@ -314,75 +457,113 @@ const ContactSection = styled.section`
   align-items: center;
   background: none;
 `;
-const ContactCard = styled(motion.div)`
-  width: 100%;
-  max-width: 600px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 22px;
-  padding: 2.5rem 2rem;
-  backdrop-filter: blur(12px);
-  border: 1.5px solid rgba(255,255,255,0.10);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-  color: #fff;
-  margin-bottom: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+
 const ContactTitle = styled.h3`
-  font-size: 1.7rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
   background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+  text-align: left;
 `;
+
 const ContactInfo = styled.p`
   color: #bdbdbd;
-  font-size: 1.1rem;
-  margin-bottom: 1.2rem;
+  font-size: 1.15rem;
+  margin-bottom: 1.5rem;
   word-break: break-all;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
 `;
+
 const ContactForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.5rem;
   width: 100%;
 `;
+
 const Input = styled.input`
-  padding: 0.9rem 1.2rem;
-  border-radius: 12px;
+  padding: 1.1rem 1.4rem;
+  border-radius: 18px;
   border: none;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.13);
   color: #fff;
-  font-size: 1rem;
+  font-size: 1.1rem;
   margin-bottom: 0.5rem;
   outline: none;
+  transition: box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 2px 8px rgba(106,130,251,0.07);
+  &::placeholder {
+    color: #bdbdbd;
+    opacity: 1;
+  }
+  &:focus {
+    background: rgba(106,130,251,0.10);
+    box-shadow: 0 0 0 2px #6a82fb44;
+  }
 `;
+
 const Textarea = styled.textarea`
-  padding: 0.9rem 1.2rem;
-  border-radius: 12px;
+  padding: 1.1rem 1.4rem;
+  border-radius: 18px;
   border: none;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.13);
   color: #fff;
-  font-size: 1rem;
+  font-size: 1.1rem;
   min-height: 120px;
   outline: none;
+  transition: box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 2px 8px rgba(106,130,251,0.07);
+  &::placeholder {
+    color: #bdbdbd;
+    opacity: 1;
+  }
+  &:focus {
+    background: rgba(106,130,251,0.10);
+    box-shadow: 0 0 0 2px #6a82fb44;
+  }
 `;
+
 const SubmitButton = styled.button`
-  padding: 1rem 2rem;
+  padding: 1.2rem 0;
   background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
   color: #fff;
   border-radius: 30px;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   border: none;
   cursor: pointer;
   margin-top: 0.5rem;
   transition: all 0.3s;
+  width: 100%;
+  box-shadow: 0 4px 16px rgba(106,130,251,0.13);
   &:hover {
     background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
     transform: scale(1.04);
+    box-shadow: 0 8px 32px rgba(252,92,125,0.18);
+  }
+`;
+
+// Add back SocialLinks and SocialIcon for Contact section
+const SocialLinks = styled.div`
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+  @media (max-width: 900px) {
+    justify-content: center;
+  }
+`;
+
+const SocialIcon = styled.a`
+  color: #6a82fb;
+  font-size: 1.7rem;
+  transition: color 0.3s;
+  &:hover {
+    color: #fc5c7d;
   }
 `;
 
@@ -392,16 +573,22 @@ const projects = [
     title: 'HyroFinance',
     desc: 'Advanced analysis platform to manage your finances and provide accurate information according to your data.',
     link: '#',
+    image: project1,
+    maintenance: false,
   },
   {
     title: 'HyroTrade',
     desc: 'Secure and efficient cryptocurrency trading platform with real-time market data.',
     link: '#',
+    image: project2,
+    maintenance: true,
   },
   {
     title: 'Hyro IoT Home System',
     desc: 'Comprehensive smart home solution with AI-powered automation and energy management.',
     link: '#',
+    image: project2,
+    maintenance: true,
   },
 ];
 
@@ -426,25 +613,192 @@ const experiences = [
   },
 ];
 
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(10,10,20,0.45);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s;
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+`;
+const ModalBox = styled.div`
+  background: rgba(30,30,40,0.85);
+  border-radius: 24px;
+  padding: 2.5rem 2rem 2rem 2rem;
+  min-width: 320px;
+  max-width: 90vw;
+  box-shadow: 0 8px 40px rgba(106,130,251,0.18);
+  backdrop-filter: blur(18px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: zoomIn 0.3s;
+  @keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; }
+  }
+`;
+const ModalIcon = styled.div`
+  font-size: 3rem;
+  color: #fc5c7d;
+  margin-bottom: 1.2rem;
+`;
+const ModalTitle = styled.div`
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.7rem;
+`;
+const ModalDesc = styled.div`
+  color: #bdbdbd;
+  font-size: 1.08rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+`;
+const ModalClose = styled.button`
+  padding: 0.7rem 2.2rem;
+  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+  color: #fff;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: all 0.3s;
+  &:hover {
+    background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
+    transform: scale(1.04);
+  }
+`;
+
+const WorkExpSection = styled.section`
+  padding: 6rem 0 4rem 0;
+  background: #0a0a0a;
+  position: relative;
+  min-height: 100px;
+  @media (max-width: 900px) {
+    padding: 3rem 0 2rem 0;
+  }
+  @media (max-width: 600px) {
+    padding: 2rem 0 1.2rem 0;
+  }
+`;
+const WorkExpTitle = styled(motion.h2)`
+  font-size: 2.1rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 2.7rem;
+  color: #fff;
+  letter-spacing: -1px;
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+  }
+  @media (max-width: 600px) {
+    font-size: 1.05rem;
+    margin-bottom: 1.2rem;
+  }
+`;
+const WorkExpGrid = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 0 1rem;
+`;
+const WorkExpCard = styled(motion.div)`
+  background: rgba(20,20,24,0.85);
+  border-radius: 24px;
+  padding: 2.2rem 1.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 500px;
+  width: 100%;
+  transition: all 0.2s cubic-bezier(.4,2,.6,1);
+  &:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 6px 24px rgba(106,130,251,0.13);
+    border-color: #6a82fb;
+    background: rgba(20,20,24,0.93);
+  }
+  @media (max-width: 900px) {
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+`;
+const WorkExpRow = styled.div`
+  display: flex;
+  justify-content: ${props => props.align === 'right' ? 'flex-end' : 'flex-start'};
+  width: 100%;
+  @media (max-width: 900px) {
+    justify-content: center;
+  }
+`;
+const WorkExpCompany = styled.h3`
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #fff;
+`;
+const WorkExpPeriod = styled.div`
+  color: #6a82fb;
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+`;
+const WorkExpDesc = styled.p`
+  color: #bdbdbd;
+  font-size: 1rem;
+  margin-bottom: 0;
+`;
+
 export default function Home() {
   function handleContactSubmit(e) {
     e.preventDefault();
     alert('Thank you! Your message has been sent.');
   }
+
+  // Real-time clock for Contact section (no fade bug)
+  const [clock, setClock] = useState('');
+  useEffect(() => {
+    const updateClock = () => {
+      const now = new Date();
+      setClock(now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
+    };
+    updateClock();
+    const interval = setInterval(updateClock, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Modal maintenance
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalProject, setModalProject] = useState('');
+  const openModal = (project) => {
+    setModalProject(project);
+    setModalOpen(true);
+  };
+  const closeModal = () => setModalOpen(false);
+
   return (
     <>
       <Navbar />
       {/* Hero Section */}
       <HeroSection id="home">
-        <HeroContentWrap>
-          <ProfileImg
-            src={profileImg}
-            alt="Deski Andriyanto"
-            initial={{ x: -40, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 1 }}
-          />
-          <HeroText>
+        <HeroContent>
+          <VideoContainer>
+            <Video src="/videobg.mp4" autoPlay loop muted playsInline />
+          </VideoContainer>
+          <TextContent>
             <HeroTitle
               initial={{ y: -40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -478,16 +832,9 @@ export default function Home() {
               <SocialIcon href="https://github.com/deskiandriya" target="_blank" rel="noopener noreferrer"><FaGithub /></SocialIcon>
               <SocialIcon href="https://www.linkedin.com/in/deski-andriyanto-b07996241/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></SocialIcon>
             </SocialLinks>
-          </HeroText>
-        </HeroContentWrap>
+          </TextContent>
+        </HeroContent>
       </HeroSection>
-
-      {/* Video Section */}
-      <VideoSection>
-        <VideoCard>
-          <StyledVideo src="/videobg.mp4" autoPlay loop muted playsInline />
-        </VideoCard>
-      </VideoSection>
 
       {/* Projects Section */}
       <Section id="projects">
@@ -508,14 +855,32 @@ export default function Home() {
               transition={{ duration: 0.6, delay: idx * 0.1 }}
               viewport={{ once: true }}
             >
+              <ProjectImage src={project.image} alt={project.title} />
               <ProjectTitle>{project.title}</ProjectTitle>
               <ProjectDesc>{project.desc}</ProjectDesc>
-              <ProjectButton href={project.link} target="_blank" rel="noopener noreferrer">
+              <ProjectButton
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={project.maintenance ? (e) => { e.preventDefault(); openModal(project.title); } : undefined}
+              >
                 View
               </ProjectButton>
             </ProjectCard>
           ))}
         </ProjectsGrid>
+        {modalOpen && (
+          <ModalOverlay onClick={closeModal}>
+            <ModalBox onClick={e => e.stopPropagation()}>
+              <ModalIcon><FaExclamationTriangle /></ModalIcon>
+              <ModalTitle>Project Under Maintenance</ModalTitle>
+              <ModalDesc>
+                {modalProject} is currently under maintenance.<br />Please check back later!
+              </ModalDesc>
+              <ModalClose onClick={closeModal}>Close</ModalClose>
+            </ModalBox>
+          </ModalOverlay>
+        )}
       </Section>
 
       {/* About Section */}
@@ -529,7 +894,7 @@ export default function Home() {
           About Me
         </SectionTitle>
         <AboutGrid>
-          <AboutCard
+          <GlassCard
             initial={{ y: 40, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -539,50 +904,125 @@ export default function Home() {
             <AboutText>
               I am a modern web developer specializing in building elegant, responsive applications designed to deliver exceptional user experiences. With a strong attention to detail and a commitment to quality, I consistently strive to create innovative solutions that align with business goals and add real value to users. I believe that the synergy between the right technology and thoughtful design is the key to building truly impactful digital products.
             </AboutText>
-          </AboutCard>
-          <AboutCard
+            <AboutTitle style={{marginTop:'2rem'}}>Educational Experience</AboutTitle>
+            <Timeline>
+              <TimelineItem>
+                <TimelineTitle>2009-2015</TimelineTitle> — SDN Kalisapu 01
+              </TimelineItem>
+              <TimelineItem>
+                <TimelineTitle>2015-2018</TimelineTitle> — MTs N Slawi
+              </TimelineItem>
+              <TimelineItem>
+                <TimelineTitle>2018-2021</TimelineTitle> — SMKN 03 Tegal
+              </TimelineItem>
+            </Timeline>
+          </GlassCard>
+        </AboutGrid>
+      </Section>
+
+      {/* Work Experience Section */}
+      <WorkExpSection id="workexp">
+        <WorkExpTitle
+          initial={{ y: -20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          Work Experience
+        </WorkExpTitle>
+        <WorkExpGrid>
+          <WorkExpRow align="left">
+            <WorkExpCard
+              initial={{ x: -40, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.7 }}
+              viewport={{ once: true }}
+            >
+              <WorkExpCompany>PT Manunggal Kabel Indonesia</WorkExpCompany>
+              <WorkExpPeriod>2021 – 2022</WorkExpPeriod>
+              <WorkExpDesc>Responsible for assembling cables with high accuracy to ensure product quality and prevent assembly errors.</WorkExpDesc>
+            </WorkExpCard>
+          </WorkExpRow>
+          <WorkExpRow align="right">
+            <WorkExpCard
+              initial={{ x: 40, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.7 }}
+              viewport={{ once: true }}
+            >
+              <WorkExpCompany>Matjeo Korean Grill</WorkExpCompany>
+              <WorkExpPeriod>2022 – 2023</WorkExpPeriod>
+              <WorkExpDesc>Handled food preparation and assisted in maintaining taste consistency and kitchen hygiene in a fast-paced environment.</WorkExpDesc>
+            </WorkExpCard>
+          </WorkExpRow>
+          <WorkExpRow align="left">
+            <WorkExpCard
+              initial={{ x: -40, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.7 }}
+              viewport={{ once: true }}
+            >
+              <WorkExpCompany>Juman Photocopy & Web Development</WorkExpCompany>
+              <WorkExpPeriod>2023 – Present</WorkExpPeriod>
+              <WorkExpDesc>Established and operate a photocopy business while also providing web development services. Responsible for building and managing websites for small businesses and individuals, as well as overseeing daily business operations.</WorkExpDesc>
+            </WorkExpCard>
+          </WorkExpRow>
+        </WorkExpGrid>
+      </WorkExpSection>
+
+      {/* Contact Section (split) */}
+      <ContactSection id="contact">
+        <ContactGrid>
+          <GlassCard
+            initial={{ y: 40, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            style={{alignItems:'flex-start', minWidth:300, flex:1}}
+          >
+            <ContactTitle>Contact</ContactTitle>
+            <ContactInfo><FaEnvelope style={{marginRight:8}}/> deskiandriyanto123@gmail.com</ContactInfo>
+            <ContactInfo><FaWhatsapp style={{marginRight:8}}/> 0895377286377</ContactInfo>
+            <SocialLinks style={{marginBottom:'1.5rem'}}>
+              <SocialIcon href="http://www.instagram.com/deski_andri" target="_blank" rel="noopener noreferrer"><FaInstagram /></SocialIcon>
+              <SocialIcon href="https://github.com/deskiandriya" target="_blank" rel="noopener noreferrer"><FaGithub /></SocialIcon>
+              <SocialIcon href="https://www.linkedin.com/in/deski-andriyanto-b07996241/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></SocialIcon>
+            </SocialLinks>
+            <MapsFrame
+              src="https://www.google.com/maps?q=Jl.+Samadikun+RT+001+RW+003,+Kel.+Debong+lor,+Kec.+Tegal+Barat,+Kota+Tegal&output=embed"
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Lokasi Rumah"
+            />
+            <div style={{marginTop:'0.5rem'}}>
+              <strong>Alamat:</strong> Jl. Samadikun RT 001 RW 003, Kel. Debong lor, Kec. Tegal Barat, Kota Tegal
+              <br />
+              <AddressLink href="https://maps.app.goo.gl/1NsdysgTHAv2GmDb7" target="_blank" rel="noopener noreferrer">
+                Lihat di Google Maps
+              </AddressLink>
+              <ClockBox>
+                <span>Waktu Lokal:</span>
+                <ClockDigital>{clock} WIB</ClockDigital>
+              </ClockBox>
+            </div>
+          </GlassCard>
+          <GlassCard
             initial={{ y: 40, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
+            style={{minWidth:300, flex:1}}
           >
-            <AboutTitle>Work Experience</AboutTitle>
-            <Timeline>
-              {experiences.map((exp, idx) => (
-                <TimelineItem key={exp.title + idx}>
-                  <TimelineTitle>{exp.title}</TimelineTitle>
-                  <TimelinePeriod>@ {exp.company} ({exp.period})</TimelinePeriod>
-                  <TimelineDesc>{exp.desc}</TimelineDesc>
-                </TimelineItem>
-              ))}
-            </Timeline>
-          </AboutCard>
-        </AboutGrid>
-      </Section>
-
-      {/* Contact Section (single card) */}
-      <ContactSection id="contact">
-        <ContactCard
-          initial={{ y: 40, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <ContactTitle>Contact</ContactTitle>
-          <ContactInfo><FaEnvelope style={{marginRight:8}}/> deskiandriyanto123@gmail.com</ContactInfo>
-          <ContactInfo><FaWhatsapp style={{marginRight:8}}/> 0895377286377</ContactInfo>
-          <SocialLinks style={{marginBottom:'1.5rem'}}>
-            <SocialIcon href="http://www.instagram.com/deski_andri" target="_blank" rel="noopener noreferrer"><FaInstagram /></SocialIcon>
-            <SocialIcon href="https://github.com/deskiandriya" target="_blank" rel="noopener noreferrer"><FaGithub /></SocialIcon>
-            <SocialIcon href="https://www.linkedin.com/in/deski-andriyanto-b07996241/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></SocialIcon>
-          </SocialLinks>
-          <ContactForm onSubmit={handleContactSubmit} autoComplete="off">
-            <Input type="text" name="name" placeholder="Your Name" required />
-            <Input type="email" name="email" placeholder="Your Email" required />
-            <Textarea name="message" placeholder="Your Message" required />
-            <SubmitButton type="submit">Send Message</SubmitButton>
-          </ContactForm>
-        </ContactCard>
+            <ContactTitle>Get in Touch</ContactTitle>
+            <ContactForm onSubmit={handleContactSubmit} autoComplete="off">
+              <Input type="text" name="name" placeholder="Your Name" required />
+              <Input type="email" name="email" placeholder="Your Email" required />
+              <Textarea name="message" placeholder="Your Message" required />
+              <SubmitButton type="submit">Send Message</SubmitButton>
+            </ContactForm>
+          </GlassCard>
+        </ContactGrid>
       </ContactSection>
     </>
   );

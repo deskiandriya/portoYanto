@@ -137,14 +137,28 @@ const Navbar = () => {
     { href: '#contact', label: 'Contact' },
   ];
 
+  // Smooth scroll handler
+  const handleNavClick = (e, sectionId) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       <Nav scrolled={scrolled}>
         <NavContainer>
-          <Logo href="#home">Deski</Logo>
+          <Logo href="#home" onClick={e => handleNavClick(e, 'home')}>Deski</Logo>
           <NavLinks>
             {navLinks.map((link) => (
-              <NavLink key={link.href} href={link.href}>
+              <NavLink
+                key={link.href}
+                href={link.href}
+                onClick={e => handleNavClick(e, link.href.replace('#', ''))}
+              >
                 {link.label}
               </NavLink>
             ))}
@@ -167,7 +181,11 @@ const Navbar = () => {
         transition={{ type: 'tween', duration: 0.3 }}
       >
         {navLinks.map((link) => (
-          <NavLink key={link.href} href={link.href} onClick={() => setMobileMenuOpen(false)}>
+          <NavLink
+            key={link.href}
+            href={link.href}
+            onClick={e => handleNavClick(e, link.href.replace('#', ''))}
+          >
             {link.label}
           </NavLink>
         ))}
